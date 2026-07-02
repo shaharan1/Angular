@@ -1,0 +1,26 @@
+.notification-badge {
+    font-size: 0.65rem;
+    padding: 0.25em 0.45em;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.navbar-brand i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
