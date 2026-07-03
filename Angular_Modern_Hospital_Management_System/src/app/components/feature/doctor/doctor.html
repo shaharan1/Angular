@@ -1,0 +1,203 @@
+<div class="container-fluid mt-4 px-4">
+    <h2 class="text-center mb-4 context-header">Modern Hospital Management System - Doctors</h2>
+
+    <!-- MANAGEMENT DATA CARD -->
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-header form-gradient text-white fw-bold py-3">
+            {{ isEdit ? 'Modify Doctor Configuration Profile' : 'Register New Medical Practitioner' }}
+        </div>
+        <div class="card-body bg-light-panel p-4">
+            <form (ngSubmit)="save()">
+                <div class="row">
+
+                    <!-- Associated Core Security User ID Assignment -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Account Linkage (User ID)</label>
+                        <input type="number" class="form-control custom-input" [(ngModel)]="doctor.user.id"
+                            name="userId" required [disabled]="isEdit">
+                    </div>
+
+                    <!-- Registration Certificate License Number Mapping -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Medical License/Reg No.</label>
+                        <input type="text" class="form-control custom-input" [(ngModel)]="doctor.registrationNumber"
+                            name="registrationNumber" required>
+                    </div>
+
+                    <!-- Operational Department Join Table Allocation Dropdown -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Department Entity Allocation</label>
+                        <select class="form-select custom-input" [(ngModel)]="doctor.doctorDepartment.id"
+                            name="departmentId" required>
+                            <option [value]="0" disabled selected>Choose target ward/dept...</option>
+                            <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.departmentName }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Specialization Domain Text Definition -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Clinical Specialization Area</label>
+                        <input type="text" class="form-control custom-input" [(ngModel)]="doctor.specialization"
+                            name="specialization" required>
+                    </div>
+
+                    <!-- Designation Sub-Profile String -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Professional Designation</label>
+                        <input type="text" class="form-control custom-input" [(ngModel)]="doctor.designation"
+                            name="designation">
+                    </div>
+
+                    <!-- Years Metric Counter Integer Input -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Practice Experience Years</label>
+                        <input type="number" class="form-control custom-input" [(ngModel)]="doctor.experienceYears"
+                            name="experienceYears">
+                    </div>
+
+                    <!-- Core Double Financial Rate Trackers -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Initial Consultation Fee ($)</label>
+                        <input type="number" step="0.01" class="form-control custom-input"
+                            [(ngModel)]="doctor.consultationFee" name="consultationFee">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Follow-Up Returning Rate ($)</label>
+                        <input type="number" step="0.01" class="form-control custom-input"
+                            [(ngModel)]="doctor.followUpFee" name="followUpFee">
+                    </div>
+
+                    <!-- Shift & Hours String Configurations -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Available Routine Days</label>
+                        <input type="text" class="form-control custom-input" placeholder="e.g. Mon, Wed, Fri"
+                            [(ngModel)]="doctor.availableDays" name="availableDays">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Shift Duty Hours Window</label>
+                        <input type="text" class="form-control custom-input" placeholder="e.g. 09:00 - 17:00"
+                            [(ngModel)]="doctor.dutyHours" name="dutyHours">
+                    </div>
+
+                    <!-- Location Tracking Parameters -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">Assigned Chamber Room</label>
+                        <input type="text" class="form-control custom-input" [(ngModel)]="doctor.chamber"
+                            name="chamber">
+                    </div>
+
+                    <!-- Temporal Tracking Parameter -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label field-label">System Join Date</label>
+                        <input type="date" class="form-control custom-input" [(ngModel)]="doctor.joinDate"
+                            name="joinDate">
+                    </div>
+
+                    <!-- Demographics Strings -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label field-label">Gender Demographics Identification</label>
+                        <select class="form-select custom-input" [(ngModel)]="doctor.gender" name="gender">
+                            <option value="">Select gender classification...</option>
+                            <option value="Male">Male Identification Profile</option>
+                            <option value="Female">Female Identification Profile</option>
+                            <option value="Other">Other Non-Binary Classification</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label field-label">Academic Degrees Summary</label>
+                        <input type="text" class="form-control custom-input" placeholder="e.g. MBBS, FCPS"
+                            [(ngModel)]="doctor.study" name="study">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label field-label">Staff Duty Allocation Status</label>
+                        <select class="form-select custom-input" [(ngModel)]="doctor.status" name="status">
+                            <option value="Active">Active Operational Deployment</option>
+                            <option value="On Leave">On Leave Temporarily</option>
+                            <option value="Suspended">Suspended Administrative Action</option>
+                        </select>
+                    </div>
+
+                    <!-- Asset Upload Uniform Resource Indicator String -->
+                    <div class="col-md-12 mb-4">
+                        <label class="form-label field-label">Profile Image Asset URI Reference Link</label>
+                        <input type="text" class="form-control custom-input"
+                            placeholder="assets/images/profiles/dr_sample.jpg" [(ngModel)]="doctor.photo" name="photo">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-neutral-action me-2 px-4" (click)="reset()">Cancel
+                        Action</button>
+                    <button type="submit" class="btn btn-commit-action px-5">{{ isEdit ? 'Apply Amendments' : 'Commit
+                        Registry Entry' }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CLINICAL REGISTRY DATATABLE -->
+    <div class="card shadow-sm border-0 table-card">
+        <div class="card-header bg-dark-panel text-white py-3 fw-bold">
+            Active Hospital Clinical Staff Registry
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-header-context">
+                        <tr>
+                            <th>ID</th>
+                            <th>Reg No.</th>
+                            <th>Clinical Specialization</th>
+                            <th>Dept Link</th>
+                            <th>Fees Struct (Visit / Return)</th>
+                            <th>Hours / Location</th>
+                            <th>Status Badge</th>
+                            <th class="text-center" width="200">Administrative Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doc of doctors" class="registry-row">
+                            <td class="fw-bold text-secondary">#{{ doc.id }}</td>
+                            <td><code class="text-dark">{{ doc.registrationNumber }}</code></td>
+                            <td>
+                                <div class="fw-bold">{{ doc.designation }}</div>
+                                <small class="text-muted">{{ doc.specialization }} ({{ doc.study }})</small>
+                            </td>
+                            <td><span class="badge bg-secondary-outline">{{ doc.doctorDepartment?.departmentName
+                                    }}</span></td>
+                            <td>
+                                <div class="text-success small">First: ${{ doc.consultationFee | number:'1.2-2' }}</div>
+                                <div class="text-info small">Return: ${{ doc.followUpFee | number:'1.2-2' }}</div>
+                            </td>
+                            <td>
+                                <div class="small fw-semibold">{{ doc.dutyHours }}</div>
+                                <div class="text-muted subtle-text">Chamber: {{ doc.chamber }}</div>
+                            </td>
+                            <td>
+                                <span class="badge status-pill" [class.bg-success-pill]="doc.status === 'Active'"
+                                    [class.bg-warning-pill]="doc.status === 'On Leave'"
+                                    [class.bg-danger-pill]="doc.status === 'Suspended'">
+                                    {{ doc.status }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-action-edit btn-sm me-2" (click)="edit(doc)">Edit</button>
+                                <button class="btn btn-action-delete btn-sm" (click)="delete(doc.id!)">Remove</button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="doctors.length === 0">
+                            <td colspan="8" class="text-center py-5 text-muted empty-state-msg">
+                                No verified medical practitioner entries detected in the database system context.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
