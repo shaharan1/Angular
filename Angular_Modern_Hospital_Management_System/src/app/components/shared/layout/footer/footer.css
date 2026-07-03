@@ -1,3 +1,115 @@
-.hover-primary:hover {
-    color: #0d6efd !important;
+:host {
+    --mc-teal-500: #24685D;
+    --mc-surface: #FFFFFF;
+    --mc-ink: #17231F;
+    --mc-ink-soft: #5B6B65;
+    --mc-line: #E1E4E1;
+    --mc-amber: #D9A441;
+    --mc-green: #3F8F5F;
+    --mc-green-100: #E1F0E6;
+    --mc-coral: #D14343;
+    --mc-coral-100: #FBE4E2;
+    --mc-font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --mc-font-body: 'Inter', 'Segoe UI', sans-serif;
+    --mc-font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+.mc-footer {
+    background: var(--mc-surface);
+    border-top: 1px solid var(--mc-line);
+    padding: 22px 28px 16px;
+    font-family: var(--mc-font-body);
+}
+
+.mc-footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 16px;
+}
+
+.mc-footer__brand-name {
+    font-family: var(--mc-font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--mc-ink);
+}
+
+.mc-footer__brand-name span {
+    color: var(--mc-amber);
+}
+
+.mc-footer__brand p {
+    margin: 4px 0 0;
+    font-size: 0.8rem;
+    color: var(--mc-ink-soft);
+    max-width: 260px;
+}
+
+.mc-footer__links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.mc-footer__links a {
+    font-size: 0.82rem;
+    color: var(--mc-ink-soft);
+    text-decoration: none;
+}
+
+.mc-footer__links a:hover {
+    color: var(--mc-teal-500);
+}
+
+.mc-footer__status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--mc-ink-soft);
+}
+
+.mc-footer__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--mc-green);
+    box-shadow: 0 0 0 3px var(--mc-green-100);
+}
+
+.mc-footer__status-dot--down {
+    background: var(--mc-coral);
+    box-shadow: 0 0 0 3px var(--mc-coral-100);
+}
+
+.mc-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--mc-line);
+    padding-top: 12px;
+    font-size: 0.74rem;
+    color: var(--mc-ink-soft);
+}
+
+.mc-footer__version {
+    font-family: var(--mc-font-mono);
+}
+
+@media (max-width: 576px) {
+    .mc-footer__top {
+        flex-direction: column;
+    }
+
+    .mc-footer__bottom {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
 }
