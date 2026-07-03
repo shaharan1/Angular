@@ -1,25 +1,16 @@
-<div class="min-vh-100 d-flex flex-column bg-light">
-    <!-- Header -->
-    <app-header></app-header>
+<div class="mc-app">
+    <app-sidebar></app-sidebar>
 
-    <div class="d-flex flex-grow-1 flex-row position-relative">
-        <!-- Sidebar -->
-        <app-sidebar class="d-none d-md-block"></app-sidebar>
+    <div class="mc-app__main">
+        <app-header></app-header>
 
-        <!-- Main Dynamic Content Workspace -->
-        <div class="d-flex flex-column flex-grow-1 overflow-auto">
-            <main class="flex-grow-1">
-                <app-home></app-home> <!-- or <router-outlet></router-outlet> -->
-            </main>
+        <main class="mc-app__content">
+            <!-- If using routing, swap <app-home> for <router-outlet> -->
+            <router-outlet></router-outlet>
+        </main>
 
-            
-<router-outlet />
+        <router-outlet />
 
-            <!-- Footer -->
-            <app-footer></app-footer>
-        </div>
+        <app-footer></app-footer>
     </div>
 </div>
-
-
-
