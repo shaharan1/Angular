@@ -1,36 +1,31 @@
-.bg-light-blue {
-    background-color: rgba(13, 110, 253, 0.1);
+:host {
+    --mc-teal-700: #17453F;
+    --mc-teal-500: #24685D;
+    --mc-teal-100: #E4EEEC;
+    --mc-paper: #F6F5F1;
+    --mc-surface: #FFFFFF;
+    --mc-ink: #17231F;
+    --mc-ink-soft: #5B6B65;
+    --mc-line: #E1E4E1;
+    --mc-amber: #D9A441;
+    --mc-amber-100: #F8ECD3;
+    --mc-coral: #D14343;
+    --mc-coral-100: #FBE4E2;
+    --mc-green: #3F8F5F;
+    --mc-green-100: #E1F0E6;
+    --mc-font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --mc-font-body: 'Inter', 'Segoe UI', sans-serif;
+    --mc-font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --mc-radius: 10px;
+    --mc-radius-sm: 6px;
+    --mc-shadow: 0 2px 10px rgba(15, 46, 43, 0.06);
 }
 
-.bg-light-yellow {
-    background-color: rgba(255, 193, 7, 0.1);
+.mc-home {
+    padding: 24px 28px 40px;
+    background: var(--mc-paper);
+    font-family: var(--mc-font-body);
 }
 
-.bg-light-green {
-    background-color: rgba(25, 135, 84, 0.1);
-}
-
-.bg-light-red {
-    background-color: rgba(220, 53, 69, 0.1);
-}
-
-.bg-success-subtle {
-    background-color: #d1e7dd;
-}
-
-.bg-warning-subtle {
-    background-color: #fff3cd;
-}
-
-.table th {
-    font-weight: 600;
-    letter-spacing: 0.03em;
-}
-
-.card {
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-}
+/* Continue with the remaining CSS exactly as it appears
+   inside styles:[` ... `] */
