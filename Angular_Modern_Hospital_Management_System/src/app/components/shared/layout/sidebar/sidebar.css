@@ -1,26 +1,184 @@
-.sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    transition: all 0.3s;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+:host {
+    --mc-teal-900: #0F2E2B;
+    --mc-teal-700: #17453F;
+    --mc-amber: #D9A441;
+    --mc-font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --mc-font-body: 'Inter', 'Segoe UI', sans-serif;
+    --mc-font-mono: 'IBM Plex Mono', 'Courier New', monospace;
 }
 
-.nav-link {
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    transition: background-color 0.2s, color 0.2s;
+.mc-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background: var(--mc-teal-900);
+    color: #DCE7E3;
+    padding: 20px 14px 16px;
+    transition: width 0.2s ease;
+    overflow-x: hidden;
 }
 
-.nav-link:not(.active):hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff !important;
+.mc-sidebar--collapsed {
+    width: 76px;
+    align-items: center;
 }
 
-.nav-link.active {
-    background-color: #0d6efd !important;
+.mc-sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 6px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 18px;
+    position: relative;
 }
 
-.tracking-wider {
-    letter-spacing: 0.08em;
-    font-size: 0.75rem;
+.mc-sidebar__mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    background: rgba(217, 164, 65, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mc-sidebar__brand-name {
+    font-family: var(--mc-font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #fff;
+    letter-spacing: .2px;
+    white-space: nowrap;
+}
+
+.mc-sidebar__brand-name span {
+    color: var(--mc-amber);
+}
+
+.mc-sidebar__collapse-btn {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: #9CB3AC;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.mc-sidebar__collapse-btn:hover {
+    background: rgba(255, 255, 255, .08);
+    color: #fff;
+}
+
+.mc-sidebar__nav {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.mc-sidebar__section {
+    margin-bottom: 16px;
+}
+
+.mc-sidebar__section-label {
+    font-family: var(--mc-font-mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #6E8983;
+    margin: 4px 10px 8px;
+}
+
+.mc-sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 10px;
+    border-radius: 6px;
+    color: #C6D6D0;
+    text-decoration: none;
+    font-family: var(--mc-font-body);
+    font-size: .92rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+    position: relative;
+    transition: background .15s ease, color .15s ease;
+}
+
+.mc-sidebar__link i {
+    font-size: 1.05rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.mc-sidebar__link:hover {
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+}
+
+.mc-sidebar__link--active {
+    background: var(--mc-teal-700);
+    color: #fff;
+}
+
+.mc-sidebar__link--active::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--mc-amber);
+}
+
+.mc-sidebar__link-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mc-sidebar__badge {
+    margin-left: auto;
+    background: var(--mc-amber);
+    color: var(--mc-teal-900);
+    font-family: var(--mc-font-mono);
+    font-size: .68rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+.mc-sidebar__vitals {
+    padding: 10px 10px 14px;
+    opacity: .55;
+}
+
+.mc-sidebar__vitals svg {
+    width: 100%;
+    height: 24px;
+}
+
+.mc-sidebar__settings {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    padding-top: 14px;
+    margin-top: 4px;
+}
+
+@media (max-width:992px) {
+    .mc-sidebar {
+        position: fixed;
+        left: 0;
+        z-index: 1030;
+    }
 }
