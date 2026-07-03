@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  imports: [CommonModule, RouterModule],
+  templateUrl: './footer.html',
+  styleUrls: ['./footer.css']
 })
-export class FooterComponent {
+export class Footer {
   currentYear = new Date().getFullYear();
   appVersion = 'v2.4.1';
-
   systemStatus: 'operational' | 'degraded' | 'down' = 'operational';
 
   quickLinks = [

@@ -1,30 +1,18 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/shared/layout/header/header';
-import { SidebarComponent } from './components/shared/layout/sidebar/sidebar';
-import { FooterComponent } from './components/shared/layout/footer/footer';
-import { HomeComponent } from './components/shared/layout/home/home';
-
-
+import { RouterOutlet } from '@angular/router';
+import { Header } from './components/shared/layout/header/header';
+import { Footer } from './components/shared/layout/footer/footer';
+import { Sidebar } from './components/shared/layout/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, SidebarComponent],
-
-  // imports: [
-  //   CommonModule,
-  //   RouterModule,
-  //   RouterOutlet,
-  //   HeaderComponent,
-  //   SidebarComponent,
-  //   FooterComponent,
-  //   HomeComponent
-  // ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [RouterOutlet, Header, Footer, Sidebar],
+  templateUrl: './app.html',
+  styleUrls: ['./app.css']
 })
 export class AppComponent {
   title = 'medcore-hms';
 }
+
+export { AppComponent };

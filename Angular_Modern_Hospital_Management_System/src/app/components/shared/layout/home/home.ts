@@ -38,10 +38,10 @@ interface QuickAction {
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home.html',
+  styleUrls: ['./home.css']
 })
-export class HomeComponent {
+export class Home {
 
   welcomeName = 'Dr. Reynolds';
 
@@ -90,3 +90,5 @@ export class HomeComponent {
     }
   }
 }
+
+export { Home as HomeComponent };

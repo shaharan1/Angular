@@ -7,23 +7,18 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header.html',
+  styleUrls: ['./header.css']
 })
-export class HeaderComponent {
-
+export class Header {
   pageTitle = 'Dashboard';
-  currentDate = new Date();
-
-  notificationsCount = 5;
   messagesCount = 2;
-
+  notificationsCount = 5;
   currentUser = {
     name: 'Dr. Sarah Reynolds',
     role: 'Chief Attending Physician',
     avatarInitials: 'SR'
   };
-
   isProfileMenuOpen = false;
 
   toggleProfileMenu(): void {
