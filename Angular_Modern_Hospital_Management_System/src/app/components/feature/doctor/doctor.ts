@@ -75,8 +75,7 @@ export class Doctor implements OnInit {
   }
 
 
-  edit(d: Doctor) {
-    // Deep copy objects to decouple direct binding manipulation inside iteration loops
+  edit(d: DoctorModel) {
     this.doctor = {
       ...d,
       user: d.user ? { ...d.user } : { id: 0, username: '', email: '' },
@@ -116,7 +115,7 @@ export class Doctor implements OnInit {
       chamber: '',
       joinDate: new Date().toISOString().substring(0, 10), // Set current date as string format YYYY-MM-DD
       photo: '',
-      user: { id: 0, username: '', email: '' }, // Ensure embedded objects are initialized for structural safe ngModel chains
+      user: { id: 0, username: '', email: '' },
       doctorDepartment: { id: 0, departmentName: '' }
     };
   }

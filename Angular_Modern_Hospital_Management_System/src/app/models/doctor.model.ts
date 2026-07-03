@@ -22,6 +22,10 @@ export interface DoctorModel {
     photo: string;
     //   slots?: ScheduleSlot[];
     reports?: Report[];
-    //   user: User;
+    user?: {
+        id: number;
+        username: string;
+        email: string;
+    };
     doctorDepartment: DoctorDepartmentModel;
 } 
