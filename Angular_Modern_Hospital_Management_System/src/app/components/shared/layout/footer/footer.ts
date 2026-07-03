@@ -1,10 +1,24 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  constructor() { }
+  currentYear = new Date().getFullYear();
+  appVersion = 'v2.4.1';
+
+  systemStatus: 'operational' | 'degraded' | 'down' = 'operational';
+
+  quickLinks = [
+    { label: 'Help Center', route: '/help' },
+    { label: 'Privacy Policy', route: '/privacy' },
+    { label: 'Terms of Use', route: '/terms' },
+    { label: 'Compliance (HIPAA)', route: '/compliance' }
+  ];
 }
