@@ -3,6 +3,9 @@ import { HomeComponent } from './components/shared/layout/home/home';
 
 
 export const routes: Routes = [
+
+
+    { path: '', component: HomeComponent },
     {
         path: '',
         redirectTo: 'dashboard',

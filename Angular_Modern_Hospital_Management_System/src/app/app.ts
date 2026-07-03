@@ -11,15 +11,17 @@ import { HomeComponent } from './components/shared/layout/home/home';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    RouterOutlet,
-    HeaderComponent,
-    SidebarComponent,
-    FooterComponent,
-    HomeComponent
-  ],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, SidebarComponent],
+
+  // imports: [
+  //   CommonModule,
+  //   RouterModule,
+  //   RouterOutlet,
+  //   HeaderComponent,
+  //   SidebarComponent,
+  //   FooterComponent,
+  //   HomeComponent
+  // ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
