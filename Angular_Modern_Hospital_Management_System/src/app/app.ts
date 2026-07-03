@@ -1,12 +1,28 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './components/shared/layout/header/header';
+import { SidebarComponent } from './components/shared/layout/sidebar/sidebar';
+import { FooterComponent } from './components/shared/layout/footer/footer';
+import { HomeComponent } from './components/shared/layout/home/home';
+
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    HomeComponent
+  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class App {
-  protected readonly title = signal('Angular_Modern_Hospital_Management_System');
+export class AppComponent {
+  title = 'medcore-hms';
 }
