@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './components/shared/layout/home/home';
+import { DoctorDepartment } from './components/feature/doctor-department/doctor-department';
 
 
 
@@ -15,6 +16,11 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         component: Home,
+        title: 'Dashboard | MedCore HMS'
+    },
+    {
+        path: 'doctordepartment',
+        component: DoctorDepartment,
         title: 'Dashboard | MedCore HMS'
     },
 
