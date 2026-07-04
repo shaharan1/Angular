@@ -1,0 +1,16 @@
+.mc-app {
+    display: flex;
+    min-height: 100vh;
+    background: #F6F5F1;
+}
+
+.mc-app__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.mc-app__content {
+    flex: 1;
+}
