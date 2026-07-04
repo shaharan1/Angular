@@ -20,12 +20,8 @@
                         Department Name
                     </label>
 
-                    <input
-                        type="text"
-                        class="form-control"
-                        [(ngModel)]="department.departmentName"
-                        name="departmentName"
-                        required>
+                    <input type="text" class="form-control" [(ngModel)]="department.departmentName"
+                        name="departmentName" required>
 
                 </div>
 
@@ -35,11 +31,7 @@
                         Description
                     </label>
 
-                    <textarea
-                        rows="3"
-                        class="form-control"
-                        [(ngModel)]="department.description"
-                        name="description">
+                    <textarea rows="3" class="form-control" [(ngModel)]="department.description" name="description">
                     </textarea>
 
                 </div>
@@ -50,10 +42,7 @@
 
                 </button>
 
-                <button
-                    type="button"
-                    class="btn btn-secondary ms-2"
-                    (click)="resetForm()">
+                <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">
 
                     Reset
 
@@ -103,17 +92,13 @@
 
                         <td>
 
-                            <button
-                                class="btn btn-warning btn-sm me-2"
-                                (click)="editDepartment(dep)">
+                            <button class="btn btn-warning btn-sm me-2" (click)="editDepartment(dep)">
 
                                 Edit
 
                             </button>
 
-                            <button
-                                class="btn btn-danger btn-sm"
-                                (click)="deleteDepartment(dep.id!)">
+                            <button class="btn btn-danger btn-sm" (click)="deleteDepartment(dep.id!)">
 
                                 Delete
 

@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { DoctorDepartmentModel } from '../../models/doctorDepartmentModel';
-import { DoctorsDepartment } from '../../services/doctors-department';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DoctorDepartmentModel } from '../../../models/doctorDepartmentModel';
+import { DoctorsDepartmentService } from '../../../services/doctors-department';
 
 @Component({
   selector: 'app-doctor-department',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class DoctorDepartment {
 
-   departments: DoctorDepartmentModel[] = [];
+  departments: DoctorDepartmentModel[] = [];
 
   department: DoctorDepartmentModel = {
     departmentName: '',
@@ -22,9 +23,9 @@ export class DoctorDepartment {
   isEdit = false;
 
   constructor(
-    private departmentService: DoctorsDepartment,
+    private departmentService: DoctorsDepartmentService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadDepartments();
@@ -34,7 +35,7 @@ export class DoctorDepartment {
     this.departmentService.getAllDepartments().subscribe({
       next: (res) => {
         this.departments = res;
-         this.cdr.markForCheck();
+        this.cdr.markForCheck();
       },
       error: (err) => {
         console.log(err);
