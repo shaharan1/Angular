@@ -3,6 +3,41 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+
+
+interface StatCard {
+  label: string;
+  value: string;
+  delta: string;
+  deltaDirection: 'up' | 'down';
+  icon: string;
+  tone: 'teal' | 'amber' | 'coral' | 'green';
+}
+
+interface Appointment {
+  patient: string;
+  patientId: string;
+  doctor: string;
+  department: string;
+  time: string;
+  status: 'confirmed' | 'waiting' | 'urgent';
+}
+
+interface DoctorAvailability {
+  name: string;
+  specialty: string;
+  initials: string;
+  status: 'available' | 'in-surgery' | 'off-duty';
+}
+
+interface QuickAction {
+  label: string;
+  icon: string;
+  route: string;
+}
+
+
+
 @Component({
   selector: 'app-home',
   imports: [CommonModule, RouterModule, FormsModule],
