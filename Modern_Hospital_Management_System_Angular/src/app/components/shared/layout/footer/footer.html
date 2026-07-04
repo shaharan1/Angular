@@ -1,0 +1,38 @@
+<footer class="mc-footer">
+    <div class="mc-footer__top">
+        <div class="mc-footer__brand">
+            <span class="mc-footer__brand-name">
+                MedCore<span>HMS</span>
+            </span>
+            <p>Coordinated care, from admission to discharge.</p>
+        </div>
+
+        <ul class="mc-footer__links">
+            <li *ngFor="let link of quickLinks">
+                <a [routerLink]="link.route">{{ link.label }}</a>
+            </li>
+        </ul>
+
+        <div class="mc-footer__status">
+            <span class="mc-footer__status-dot" [class.mc-footer__status-dot--down]="systemStatus !== 'operational'">
+            </span>
+
+            <span *ngIf="systemStatus === 'operational'">
+                All systems operational
+            </span>
+
+            <span *ngIf="systemStatus === 'degraded'">
+                Degraded performance
+            </span>
+
+            <span *ngIf="systemStatus === 'down'">
+                System outage
+            </span>
+        </div>
+    </div>
+
+    <div class="mc-footer__bottom">
+        <p>&copy; {{ currentYear }} MedCore HMS. All rights reserved.</p>
+        <p class="mc-footer__version">Build {{ appVersion }}</p>
+    </div>
+</footer>
