@@ -5,27 +5,30 @@ import { DoctorDepartmentModel } from "./doctorDepartment.model";
 
 export interface DoctorModel {
 
-    id?: number; // Optional because it is null/undefined before saving to the DB
-    gender: string;
-    status: string;
-    study: string;
-    specialization: string;
-    designation: string;
-    registrationNumber: string;
-    experienceYears: number;
-    consultationFee: number;
-    followUpFee: number;
-    availableDays: string; // If parsing as JSON string later, you can use 'string | string[]'
-    dutyHours: string;
-    chamber: string;
-    joinDate: string | Date; // Backend localDate maps to string (YYYY-MM-DD) in JSON response
-    photo: string;
-    //   slots?: ScheduleSlot[];
-    reports?: Report[];
-    user?: {
-        id: number;
-        username: string;
-        email: string;
-    };
-    doctorDepartment: DoctorDepartmentModel;
+    gender: '',
+  status: 'Active',
+  study: '',
+  specialization: '',
+  designation: '',
+  registrationNumber: '',
+  experienceYears: 0,
+  consultationFee: 0,
+  followUpFee: 0,
+  availableDays: '',
+  dutyHours: '',
+  chamber: '',
+  joinDate: '',
+  photo: '',
+
+  user: {
+    id: 0,
+    username: '',
+    email: ''
+  },
+
+  DoctorDepartmentModel: {
+    id: 0,
+    departmentName: '',
+    description: ''
+  }
 } 
