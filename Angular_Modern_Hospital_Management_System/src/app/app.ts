@@ -17,4 +17,4 @@ export class AppComponent {
   title = 'medcore-hms';
 }
 
-// export { AppComponent };
+export { AppComponent };

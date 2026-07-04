@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Home, HomeComponent } from './components/shared/layout/home/home';
+import { Home } from './components/shared/layout/home/home';
 
 
 
@@ -14,7 +14,7 @@ export const routes: Routes = [
     },
     {
         path: 'dashboard',
-        component: HomeComponent,
+        component: Home,
         title: 'Dashboard | MedCore HMS'
     },
 
