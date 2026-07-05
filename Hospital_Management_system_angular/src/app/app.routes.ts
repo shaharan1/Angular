@@ -41,6 +41,10 @@ export const routes: Routes = [
     path: 'office-staff/create',
     component: OfficeStaffComponent
   },
+   {
+    path: 'office-staff/edit/:id',
+    component: OfficeStaffComponent
+  },
 
    {
     path: 'office-staff',
