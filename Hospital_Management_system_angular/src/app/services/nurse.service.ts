@@ -9,10 +9,11 @@ import { environment } from '../../environments/environment';
 })
 export class NurseService {
 
- private api = environment.apiUrl + "nurses";
-  apiUrl: any;
+  private apiUrl = environment.apiUrl + "nurses";
+  //  private api = "http://localhost:8085/api/" + "nurses";
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) { }
 
   // Create Nurse
   createNurse(nurse: NurseModel): Observable<NurseModel> {

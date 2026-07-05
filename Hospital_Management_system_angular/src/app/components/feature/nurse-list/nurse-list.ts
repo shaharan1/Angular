@@ -1,25 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NurseModel } from '../../../models/nurseModel';
 import { NurseService } from '../../../services/nurse.service';
 
 @Component({
   selector: 'app-nurse-list',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './nurse-list.html',
   styleUrl: './nurse-list.css',
 })
 export class NurseList implements OnInit {
 
 
-nurses: NurseModel[] = [];
+  nurses: NurseModel[] = [];
   filteredNurses: NurseModel[] = [];
 
   searchText = '';
   ward = '';
 
-  constructor(private nurseService: NurseService) {}
+  constructor(
+    private nurseService: NurseService,
+    private cdr: ChangeDetectorRef
+
+  ) { }
 
   ngOnInit(): void {
     this.loadNurses();
@@ -30,6 +34,7 @@ nurses: NurseModel[] = [];
       next: (data) => {
         this.nurses = data;
         this.filteredNurses = data;
+        this.cdr.markForCheck();
       },
       error: (err) => console.error(err)
     });
@@ -67,6 +72,7 @@ nurses: NurseModel[] = [];
     this.nurseService.getOnDutyNurses().subscribe({
       next: (data) => {
         this.filteredNurses = data;
+        this.cdr.markForCheck();
       }
     });
 
@@ -99,5 +105,5 @@ nurses: NurseModel[] = [];
       });
 
   }
-  
+
 }

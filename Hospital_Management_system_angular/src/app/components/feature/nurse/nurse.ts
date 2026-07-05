@@ -6,7 +6,7 @@ import { NurseService } from '../../../services/nurse.service';
 
 @Component({
   selector: 'app-nurse',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './nurse.html',
   styleUrl: './nurse.css',
 })
@@ -34,7 +34,7 @@ export class Nurse implements OnInit {
     remarks: ''
   };
 
-  constructor(private nurseService: NurseService) {}
+  constructor(private nurseService: NurseService) { }
 
   ngOnInit(): void {
     this.loadNurses();
@@ -46,13 +46,27 @@ export class Nurse implements OnInit {
     });
   }
 
+
   saveNurse() {
-    this.nurseService.createNurse(this.nurse).subscribe(() => {
-      alert("Nurse Saved Successfully");
-      this.loadNurses();
-      this.resetForm();
+
+    this.nurseService.createNurse(this.nurse).subscribe({
+      next: (data) => {
+        alert("Nurse Saved Successfully");
+        this.loadNurses();
+        this.resetForm();
+        console.log(data);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+
     });
+
   }
+
+
+
+  
 
   dutyStatus(nurse: NurseModel) {
 
