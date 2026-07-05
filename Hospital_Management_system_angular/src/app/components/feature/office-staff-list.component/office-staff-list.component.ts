@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { OfficeStaffModel } from '../../models/office-staff.model';
-import { OfficeStaffService } from '../../services/office-staff.service';
+import { OfficeStaffModel } from '../../../models/office-staff.model';
+import { OfficeStaffService } from '../../../services/office-staff.service';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

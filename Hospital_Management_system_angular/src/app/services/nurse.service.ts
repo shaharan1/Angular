@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class NurseService {
 
   private apiUrl = environment.apiUrl + "nurses";
-  //  private api = "http://localhost:8085/api/" + "nurses";
+ 
 
 
   constructor(private http: HttpClient) { }
