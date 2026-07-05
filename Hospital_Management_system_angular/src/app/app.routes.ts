@@ -7,6 +7,7 @@ import { Nurse } from './components/feature/nurse/nurse';
 import { NurseList } from './components/feature/nurse-list/nurse-list';
 import { OfficeStaffComponent } from './components/feature/office-staff.component/office-staff.component';
 import { OfficeStaffList } from './components/feature/office-staff-list.component/office-staff-list.component';
+import { ScheduleSlotComponent } from './components/feature/schedule-slot.component/schedule-slot.component';
 
 export const routes: Routes = [
 
@@ -49,6 +50,12 @@ export const routes: Routes = [
    {
     path: 'office-staff',
     component: OfficeStaffList
+  },
+
+   // Schedule Slot
+  {
+    path: 'schedule-slot',
+    component: ScheduleSlotComponent
   },
 
 
