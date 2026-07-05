@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ScheduleSlotService } from '../../../services/schedule-slot.service';
 import { DoctorModelService } from '../../../services/doctor.service';
@@ -21,7 +21,8 @@ export class ScheduleSlotComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private slotService: ScheduleSlotService,
-    private doctorService: DoctorModelService
+    private doctorService: DoctorModelService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +60,7 @@ export class ScheduleSlotComponent implements OnInit {
     this.slotService.getAll().subscribe(res => {
 
       this.slots = res;
+      this.cdr.markForCheck();
 
     });
 
