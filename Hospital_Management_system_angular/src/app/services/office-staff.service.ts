@@ -12,7 +12,11 @@ export class OfficeStaffService {
 
 private apiUrl = environment.apiUrl + "office-staff";
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    
+
+  ) { }
 
   create(data: OfficeStaffModel): Observable<OfficeStaffModel> {
     return this.http.post<OfficeStaffModel>(
