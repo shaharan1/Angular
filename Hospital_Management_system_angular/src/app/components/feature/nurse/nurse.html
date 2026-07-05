@@ -1,170 +1,245 @@
-<h2>Add Nurse</h2>
+<div class="container">
 
-<form (ngSubmit)="saveNurse()">
+    <!-- Add Nurse -->
+    <div class="card">
 
-    <input
-        type="text"
-        placeholder="Name"
-        [(ngModel)]="nurse.name"
-        name="name">
+        <h2>Add Nurse</h2>
 
-    <input
-        type="email"
-        placeholder="Email"
-        [(ngModel)]="nurse.email"
-        name="email">
+        <form (ngSubmit)="saveNurse()">
 
-    <input
-        type="text"
-        placeholder="Phone"
-        [(ngModel)]="nurse.phone"
-        name="phone">
+            <div class="form-grid">
 
-    <input
-        type="password"
-        placeholder="Password"
-        [(ngModel)]="nurse.password"
-        name="password">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.name"
+                           name="name">
+                </div>
 
-    <input
-        type="text"
-        placeholder="Address"
-        [(ngModel)]="nurse.address"
-        name="address">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control"
+                           type="email"
+                           [(ngModel)]="nurse.email"
+                           name="email">
+                </div>
 
-    <select
-        [(ngModel)]="nurse.gender"
-        name="gender">
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.phone"
+                           name="phone">
+                </div>
 
-        <option value="">Gender</option>
-        <option>MALE</option>
-        <option>FEMALE</option>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control"
+                           type="password"
+                           [(ngModel)]="nurse.password"
+                           name="password">
+                </div>
 
-    </select>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.address"
+                           name="address">
+                </div>
 
-    <input
-        type="date"
-        [(ngModel)]="nurse.joinDate"
-        name="joinDate">
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select class="form-control"
+                            [(ngModel)]="nurse.gender"
+                            name="gender">
 
-    <input
-        type="text"
-        placeholder="Photo URL"
-        [(ngModel)]="nurse.photo"
-        name="photo">
+                        <option value="">Select Gender</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
 
-    <select
-        [(ngModel)]="nurse.nurseType"
-        name="nurseType">
+                    </select>
+                </div>
 
-        <option>REGISTERED_NURSE</option>
-        <option>HEAD_NURSE</option>
-        <option>ICU_NURSE</option>
+                <div class="form-group">
+                    <label>Join Date</label>
+                    <input class="form-control"
+                           type="date"
+                           [(ngModel)]="nurse.joinDate"
+                           name="joinDate">
+                </div>
 
-    </select>
+                <div class="form-group">
+                    <label>Photo URL</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.photo"
+                           name="photo">
+                </div>
 
-    <input
-        type="text"
-        placeholder="Qualification"
-        [(ngModel)]="nurse.qualification"
-        name="qualification">
+                <div class="form-group">
+                    <label>Nurse Type</label>
+                    <select class="form-control"
+                            [(ngModel)]="nurse.nurseType"
+                            name="nurseType">
 
-    <input
-        type="text"
-        placeholder="Registration Number"
-        [(ngModel)]="nurse.registrationNumber"
-        name="registrationNumber">
+                        <option value="">Select Nurse Type</option>
+                        <option value="REGISTERED_NURSE">Registered Nurse</option>
+                        <option value="HEAD_NURSE">Head Nurse</option>
+                        <option value="ICU_NURSE">ICU Nurse</option>
 
-    <input
-        type="number"
-        placeholder="Experience"
-        [(ngModel)]="nurse.experienceYears"
-        name="experienceYears">
+                    </select>
+                </div>
 
-    <select
-        [(ngModel)]="nurse.shift"
-        name="shift">
+                <div class="form-group">
+                    <label>Qualification</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.qualification"
+                           name="qualification">
+                </div>
 
-        <option>MORNING</option>
-        <option>EVENING</option>
-        <option>NIGHT</option>
+                <div class="form-group">
+                    <label>Registration Number</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.registrationNumber"
+                           name="registrationNumber">
+                </div>
 
-    </select>
+                <div class="form-group">
+                    <label>Experience (Years)</label>
+                    <input class="form-control"
+                           type="number"
+                           [(ngModel)]="nurse.experienceYears"
+                           name="experienceYears">
+                </div>
 
-    <input
-        type="text"
-        placeholder="Working Hours"
-        [(ngModel)]="nurse.workingHours"
-        name="workingHours">
+                <div class="form-group">
+                    <label>Shift</label>
+                    <select class="form-control"
+                            [(ngModel)]="nurse.shift"
+                            name="shift">
 
-    <input
-        type="text"
-        placeholder="Ward"
-        [(ngModel)]="nurse.assignedWard"
-        name="assignedWard">
+                        <option value="">Select Shift</option>
+                        <option value="MORNING">Morning</option>
+                        <option value="EVENING">Evening</option>
+                        <option value="NIGHT">Night</option>
 
-    <textarea
-        placeholder="Remarks"
-        [(ngModel)]="nurse.remarks"
-        name="remarks"></textarea>
+                    </select>
+                </div>
 
-    <button type="submit">
-        Save Nurse
-    </button>
+                <div class="form-group">
+                    <label>Working Hours</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.workingHours"
+                           name="workingHours">
+                </div>
 
-</form>
+                <div class="form-group">
+                    <label>Assigned Ward</label>
+                    <input class="form-control"
+                           type="text"
+                           [(ngModel)]="nurse.assignedWard"
+                           name="assignedWard">
+                </div>
 
-<hr>
+                <div class="form-group">
+                    <label>Remarks</label>
+                    <textarea class="form-control"
+                              [(ngModel)]="nurse.remarks"
+                              name="remarks"></textarea>
+                </div>
 
-<h2>Nurse List</h2>
+            </div>
 
-<table border="1">
+            <br>
 
-    <thead>
-
-    <tr>
-
-        <th>Name</th>
-        <th>Email</th>
-        <th>Ward</th>
-        <th>Shift</th>
-        <th>Duty</th>
-        <th>Status</th>
-        <th>Action</th>
-
-    </tr>
-
-    </thead>
-
-    <tbody>
-
-    <tr *ngFor="let nurse of nurses">
-
-        <td>{{nurse.name}}</td>
-        <td>{{nurse.email}}</td>
-        <td>{{nurse.assignedWard}}</td>
-        <td>{{nurse.shift}}</td>
-
-        <td>{{nurse.onDuty ? 'ON' : 'OFF'}}</td>
-
-        <td>{{nurse.active ? 'ACTIVE' : 'INACTIVE'}}</td>
-
-        <td>
-
-            <button
-                (click)="dutyStatus(nurse)">
-                Duty
+            <button class="btn btn-primary" type="submit">
+                Save Nurse
             </button>
 
-            <button
-                (click)="activeStatus(nurse)">
-                Active
-            </button>
+        </form>
 
-        </td>
+    </div>
 
-    </tr>
+    <!-- Nurse List -->
+    <div class="card">
 
-    </tbody>
+        <h2>Nurse List</h2>
 
-</table>
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Ward</th>
+                    <th>Shift</th>
+                    <th>Duty</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr *ngFor="let nurse of nurses">
+
+                    <td>{{ nurse.name }}</td>
+
+                    <td>{{ nurse.email }}</td>
+
+                    <td>{{ nurse.assignedWard }}</td>
+
+                    <td>{{ nurse.shift }}</td>
+
+                    <td>
+                        <span class="badge"
+                              [ngClass]="nurse.onDuty ? 'badge-success':'badge-danger'">
+                            {{ nurse.onDuty ? 'ON DUTY' : 'OFF DUTY' }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge"
+                              [ngClass]="nurse.active ? 'badge-success':'badge-warning'">
+                            {{ nurse.active ? 'ACTIVE' : 'INACTIVE' }}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <div class="action-buttons">
+
+                            <button
+                                    class="btn btn-success"
+                                    (click)="dutyStatus(nurse)">
+                                Duty
+                            </button>
+
+                            <button
+                                    class="btn btn-warning"
+                                    (click)="activeStatus(nurse)">
+                                Active
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
