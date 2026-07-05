@@ -1,1 +1,170 @@
-<p>nurse works!</p>
+<h2>Add Nurse</h2>
+
+<form (ngSubmit)="saveNurse()">
+
+    <input
+        type="text"
+        placeholder="Name"
+        [(ngModel)]="nurse.name"
+        name="name">
+
+    <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="nurse.email"
+        name="email">
+
+    <input
+        type="text"
+        placeholder="Phone"
+        [(ngModel)]="nurse.phone"
+        name="phone">
+
+    <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="nurse.password"
+        name="password">
+
+    <input
+        type="text"
+        placeholder="Address"
+        [(ngModel)]="nurse.address"
+        name="address">
+
+    <select
+        [(ngModel)]="nurse.gender"
+        name="gender">
+
+        <option value="">Gender</option>
+        <option>MALE</option>
+        <option>FEMALE</option>
+
+    </select>
+
+    <input
+        type="date"
+        [(ngModel)]="nurse.joinDate"
+        name="joinDate">
+
+    <input
+        type="text"
+        placeholder="Photo URL"
+        [(ngModel)]="nurse.photo"
+        name="photo">
+
+    <select
+        [(ngModel)]="nurse.nurseType"
+        name="nurseType">
+
+        <option>REGISTERED_NURSE</option>
+        <option>HEAD_NURSE</option>
+        <option>ICU_NURSE</option>
+
+    </select>
+
+    <input
+        type="text"
+        placeholder="Qualification"
+        [(ngModel)]="nurse.qualification"
+        name="qualification">
+
+    <input
+        type="text"
+        placeholder="Registration Number"
+        [(ngModel)]="nurse.registrationNumber"
+        name="registrationNumber">
+
+    <input
+        type="number"
+        placeholder="Experience"
+        [(ngModel)]="nurse.experienceYears"
+        name="experienceYears">
+
+    <select
+        [(ngModel)]="nurse.shift"
+        name="shift">
+
+        <option>MORNING</option>
+        <option>EVENING</option>
+        <option>NIGHT</option>
+
+    </select>
+
+    <input
+        type="text"
+        placeholder="Working Hours"
+        [(ngModel)]="nurse.workingHours"
+        name="workingHours">
+
+    <input
+        type="text"
+        placeholder="Ward"
+        [(ngModel)]="nurse.assignedWard"
+        name="assignedWard">
+
+    <textarea
+        placeholder="Remarks"
+        [(ngModel)]="nurse.remarks"
+        name="remarks"></textarea>
+
+    <button type="submit">
+        Save Nurse
+    </button>
+
+</form>
+
+<hr>
+
+<h2>Nurse List</h2>
+
+<table border="1">
+
+    <thead>
+
+    <tr>
+
+        <th>Name</th>
+        <th>Email</th>
+        <th>Ward</th>
+        <th>Shift</th>
+        <th>Duty</th>
+        <th>Status</th>
+        <th>Action</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr *ngFor="let nurse of nurses">
+
+        <td>{{nurse.name}}</td>
+        <td>{{nurse.email}}</td>
+        <td>{{nurse.assignedWard}}</td>
+        <td>{{nurse.shift}}</td>
+
+        <td>{{nurse.onDuty ? 'ON' : 'OFF'}}</td>
+
+        <td>{{nurse.active ? 'ACTIVE' : 'INACTIVE'}}</td>
+
+        <td>
+
+            <button
+                (click)="dutyStatus(nurse)">
+                Duty
+            </button>
+
+            <button
+                (click)="activeStatus(nurse)">
+                Active
+            </button>
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
