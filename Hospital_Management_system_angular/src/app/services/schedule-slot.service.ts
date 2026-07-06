@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class ScheduleSlotService {
 
 
- private api = environment.apiUrl + "schedule-slots";
+  private api = environment.apiUrl + "schedule-slots";
 
   constructor(private http: HttpClient) { }
 
@@ -37,6 +37,18 @@ export class ScheduleSlotService {
       {}
     );
 
+  }
+
+
+  // Get available (free) slots
+  findAvailableSlots(
+    doctorId: number,
+    date: string
+  ): Observable<ScheduleSlotModel[]> {
+
+    return this.http.get<ScheduleSlotModel[]>(
+      `${this.api}/doctor/${doctorId}/free?date=${date}`
+    );
   }
 
 

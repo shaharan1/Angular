@@ -17,36 +17,26 @@
                     <!-- Patient Name -->
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Patient Name</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            formControlName="patientName">
+                        <input type="text" class="form-control" formControlName="patientName">
                     </div>
 
                     <!-- Mobile -->
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Mobile Number</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            formControlName="mobileNumber"
+                        <input type="text" class="form-control" formControlName="mobileNumber"
                             (blur)="checkReturningPatient()">
                     </div>
 
                     <!-- Returning Patient -->
                     <div class="col-md-12 mb-3">
 
-                        <div
-                            *ngIf="returningPatient"
-                            class="alert alert-success">
+                        <div *ngIf="returningPatient" class="alert alert-success">
 
                             Returning Patient
 
                         </div>
 
-                        <div
-                            *ngIf="!returningPatient"
-                            class="alert alert-warning">
+                        <div *ngIf="!returningPatient" class="alert alert-warning">
 
                             New Patient
 
@@ -55,36 +45,42 @@
                     </div>
 
                     <!-- Specialization -->
+                    <!-- Doctor Department -->
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Specialization</label>
+                        <label class="form-label">Doctor Department</label>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            formControlName="specialization">
+                        <select class="form-select" formControlName="doctorDepartmentId">
+
+                            <option value="">Select Department</option>
+
+                            <option *ngFor="let dept of dosctorsDepartments" [value]="dept.id">
+                                {{ dept.departmentName }}
+                            </option>
+
+                        </select>
                     </div>
 
+                    <!-- Doctor -->
                     <!-- Doctor -->
                     <div class="col-md-6 mb-3">
 
                         <label class="form-label">Doctor</label>
 
-                        <select
-                            class="form-select"
-                            formControlName="doctorId"
-                            (change)="calculateFee()">
+                        <select class="form-select" formControlName="doctorId" (change)="calculateFee()"
+                            [disabled]="!appointmentForm.get('doctorDepartmentId')?.value">
 
                             <option value="">Select Doctor</option>
 
-                            <option
-                                *ngFor="let doctor of doctors"
-                                [value]="doctor.id">
-
+                            <option *ngFor="let doctor of doctors" [value]="doctor.id">
                                 {{doctor.name}}
-
                             </option>
 
                         </select>
+
+                        <div *ngIf="appointmentForm.get('doctorDepartmentId')?.value && doctors.length === 0"
+                            class="text-muted mt-1">
+                            No doctors found in this department.
+                        </div>
 
                     </div>
 
@@ -92,20 +88,38 @@
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Appointment Date</label>
 
-                        <input
-                            type="date"
-                            class="form-control"
-                            formControlName="appointmentDate">
+                        <input type="date" class="form-control" formControlName="appointmentDate">
                     </div>
 
                     <!-- Appointment Time -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Appointment Time</label>
 
-                        <input
-                            type="time"
-                            class="form-control"
-                            formControlName="appointmentTime">
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Available Time Slots
+                        </label>
+
+                        <select class="form-select" formControlName="appointmentTime"
+                            [disabled]="!appointmentForm.get('doctorId')?.value || !appointmentForm.get('appointmentDate')?.value">
+
+                            <option value="">Select Available Time</option>
+
+                            <option *ngFor="let slot of availableSlots" [value]="slot.startTime">
+
+                                {{ slot.startTime }} - {{ slot.endTime }}
+
+                            </option>
+
+                        </select>
+
+                        <div *ngIf="appointmentForm.get('doctorId')?.value
+               && appointmentForm.get('appointmentDate')?.value
+               && availableSlots.length === 0" class="text-danger mt-2">
+
+                            No available slots for the selected doctor and date.
+
+                        </div>
+
                     </div>
 
                     <!-- Problem -->
@@ -115,10 +129,7 @@
                             Problem Description
                         </label>
 
-                        <textarea
-                            rows="4"
-                            class="form-control"
-                            formControlName="problemDescription">
+                        <textarea rows="4" class="form-control" formControlName="problemDescription">
                         </textarea>
 
                     </div>
@@ -132,9 +143,7 @@
 
                         </label>
 
-                        <select
-                            class="form-select"
-                            formControlName="paymentMethod">
+                        <select class="form-select" formControlName="paymentMethod">
 
                             <option value="">Select</option>
 
@@ -168,10 +177,7 @@
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            formControlName="transactionId">
+                        <input type="text" class="form-control" formControlName="transactionId">
 
                     </div>
 
@@ -194,16 +200,13 @@
 
                 </div>
 
-                <button
-                    class="btn btn-success">
+                <button class="btn btn-success">
 
                     Book Appointment
 
                 </button>
 
-                <button
-                    type="reset"
-                    class="btn btn-secondary ms-2">
+                <button type="reset" class="btn btn-secondary ms-2">
 
                     Reset
 

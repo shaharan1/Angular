@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentModel } from '../../../models/appointmentModel';
 import { AppointmentService } from '../../../services/appointment.service';
@@ -17,7 +17,8 @@ export class AppointmentList implements OnInit {
   selectedDoctorId = 1;
 
   constructor(
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -29,13 +30,14 @@ export class AppointmentList implements OnInit {
   loadAppointments() {
 
     this.appointmentService
-      .getDoctorAppointments(this.selectedDoctorId)
+      .getAllAppointments()
       .subscribe({
 
         next: (res) => {
 
           this.appointments = res;
-
+          console.log('Appointments:', res);
+          this.cdr.markForCheck();
         },
 
         error: (err) => console.log(err)
