@@ -55,17 +55,26 @@
 
                 </div>
 
-                <div class="col-md-5 d-flex align-items-end">
+                <div class="col-md-5 d-flex align-items-end flex-wrap">
 
-                    <button class="btn btn-primary me-2" (click)="search()">
+                    <button class="btn btn-primary me-2 mb-2" (click)="search()">
 
+                        <i class="bi bi-search"></i>
                         Search
 
                     </button>
 
-                    <button class="btn btn-secondary" (click)="reset()">
+                    <button class="btn btn-secondary me-2 mb-2" (click)="reset()">
 
+                        <i class="bi bi-arrow-counterclockwise"></i>
                         Reset
+
+                    </button>
+
+                    <button class="btn btn-success mb-2" (click)="downloadDoctorWisePdf()">
+
+                        <i class="bi bi-file-earmark-pdf-fill"></i>
+                        Download Report
 
                     </button>
 
