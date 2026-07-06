@@ -108,6 +108,7 @@ export class Doctor {
     this.doctorService.getById(id).subscribe(res => {
 
       this.doctorForm.patchValue(res);
+       this.cdr.markForCheck();
 
     });
 
