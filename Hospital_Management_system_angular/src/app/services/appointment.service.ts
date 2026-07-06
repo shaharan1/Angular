@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AppointmentService {
 
 
- private apiUrl = environment.apiUrl + "appointments";
+  private apiUrl = environment.apiUrl + "appointments";
 
   constructor(private http: HttpClient) { }
 
@@ -20,8 +20,8 @@ export class AppointmentService {
 
 
   getAllAppointments(): Observable<AppointmentModel[]> {
-  return this.http.get<AppointmentModel[]>(this.apiUrl);
-}
+    return this.http.get<AppointmentModel[]>(this.apiUrl);
+  }
 
   getDoctorAppointments(doctorId: number): Observable<AppointmentModel[]> {
     return this.http.get<AppointmentModel[]>(
@@ -52,6 +52,30 @@ export class AppointmentService {
     return this.http.get<number>(
       `${this.apiUrl}/calculate-fee?phone=${phone}&doctorId=${doctorId}`
     );
+  }
+
+
+  //  ---------Filter Appointments-----------
+  filterAppointments(
+    doctorId?: number,
+    date?: string
+  ): Observable<AppointmentModel[]> {
+
+    let params: any = {};
+
+    if (doctorId) {
+      params.doctorId = doctorId;
+    }
+
+    if (date) {
+      params.date = date;
+    }
+
+    return this.http.get<AppointmentModel[]>(
+      `${this.apiUrl}/filter`,
+      { params }
+    );
+
   }
 
 

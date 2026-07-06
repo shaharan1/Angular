@@ -10,6 +10,7 @@ import { OfficeStaffList } from './components/feature/office-staff-list.componen
 import { ScheduleSlotComponent } from './components/feature/schedule-slot.component/schedule-slot.component';
 import { AppointmentList } from './components/feature/appointment-list.component/appointment-list.component';
 import { AppointmentComponent } from './components/feature/appointment.component/appointment.component';
+import { AppointmentSlip } from './components/feature/appointment-slip/appointment-slip';
 
 export const routes: Routes = [
 
@@ -30,31 +31,31 @@ export const routes: Routes = [
     component: DoctorList
   },
 
-   {
+  {
     path: 'nurses/create',
-    component:Nurse
+    component: Nurse
   },
 
-   {
+  {
     path: 'nurses',
     component: NurseList
   },
 
-   {
+  {
     path: 'office-staff/create',
     component: OfficeStaffComponent
   },
-   {
+  {
     path: 'office-staff/edit/:id',
     component: OfficeStaffComponent
   },
 
-   {
+  {
     path: 'office-staff',
     component: OfficeStaffList
   },
 
-   // Schedule Slot
+  // Schedule Slot
   {
     path: 'schedule-slot',
     component: ScheduleSlotComponent
@@ -73,14 +74,20 @@ export const routes: Routes = [
     component: AppointmentList
   },
 
-   {
+  {
     path: 'appointments/create',
     component: AppointmentComponent
   },
-   {
+  {
     path: 'appointments/edit/:id',
     component: AppointmentComponent
   },
+
+
+  {
+    path: 'appointment-slip',
+    component: AppointmentSlip
+  }
 
 
 

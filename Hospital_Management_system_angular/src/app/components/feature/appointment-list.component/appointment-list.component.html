@@ -1,15 +1,16 @@
-<div class="container mt-4">
+<div class="container-fluid mt-4">
 
     <div class="card shadow">
 
-        <div class="card-header bg-primary text-white d-flex justify-content-between">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
 
-            <h4 class="mb-0">Appointment List</h4>
+            <h4 class="mb-0">
+                Appointment Management
+            </h4>
 
-            <button
-                class="btn btn-light btn-sm"
-                (click)="loadAppointments()">
+            <button class="btn btn-light btn-sm" (click)="loadAppointments()">
 
+                <i class="bi bi-arrow-clockwise"></i>
                 Refresh
 
             </button>
@@ -17,6 +18,62 @@
         </div>
 
         <div class="card-body">
+
+            <!-- ================= Filter Section ================= -->
+
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-4">
+
+                    <label class="form-label fw-bold">
+                        Doctor
+                    </label>
+
+                    <select class="form-select" [(ngModel)]="doctorId">
+
+                        <option [ngValue]="undefined">
+                            All Doctors
+                        </option>
+
+                        <option *ngFor="let doctor of doctors" [ngValue]="doctor.id">
+
+                            {{doctor.name}}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <label class="form-label fw-bold">
+                        Appointment Date
+                    </label>
+
+                    <input type="date" class="form-control" [(ngModel)]="appointmentDate">
+
+                </div>
+
+                <div class="col-md-5 d-flex align-items-end">
+
+                    <button class="btn btn-primary me-2" (click)="search()">
+
+                        Search
+
+                    </button>
+
+                    <button class="btn btn-secondary" (click)="reset()">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- ================= Table ================= -->
 
             <div class="table-responsive">
 
@@ -48,7 +105,9 @@
 
                             <th>Payment</th>
 
-                            <th>Action</th>
+                            <th width="220">
+                                Action
+                            </th>
 
                         </tr>
 
@@ -56,35 +115,69 @@
 
                     <tbody>
 
-                        <tr *ngFor="let appointment of appointments; let i = index">
+                        <tr *ngFor="let appointment of appointments; let i=index">
 
-                            <td>{{ i + 1 }}</td>
-
-                            <td>{{ appointment.appointmentNumber }}</td>
-
-                            <td>{{ appointment.patientName }}</td>
-
-                            <td>{{ appointment.mobileNumber }}</td>
-
-                            <td>{{ appointment.doctorName }}</td>
-
-                            <td>{{ appointment.doctorSpecialization }}</td>
-
-                            <td>{{ appointment.appointmentDate }}</td>
-
-                            <td>{{ appointment.appointmentTime }}</td>
-
-                            <td>{{ appointment.feeCharged }} Tk</td>
+                            <td>{{i+1}}</td>
 
                             <td>
 
-                                <span
-                                    class="badge"
-                                    [ngClass]="{
-                                      'bg-success': appointment.status=='BOOKED',
-                                      'bg-danger': appointment.status=='CANCELLED',
-                                      'bg-warning': appointment.status=='PENDING'
-                                    }">
+                                {{appointment.appointmentNumber}}
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.patientName}}
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.mobileNumber}}
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.doctorName}}
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.doctorSpecialization}}
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.appointmentDate}}
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.appointmentTime}}
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.feeCharged}} Tk
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge" [ngClass]="{
+
+                                    'bg-success': appointment.status=='CONFIRMED',
+
+                                    'bg-warning text-dark': appointment.status=='PENDING_VERIFICATION',
+
+                                    'bg-danger': appointment.status=='CANCELLED'
+
+                                }">
 
                                     {{appointment.status}}
 
@@ -100,12 +193,19 @@
 
                             <td>
 
-                                <button
+                                <button class="btn btn-info btn-sm me-1" (click)="printSlip(appointment)">
 
-                                    class="btn btn-danger btn-sm"
+                                    Slip
 
-                                    (click)="cancel(appointment.id!)"
+                                </button>
 
+                                <button class="btn btn-success btn-sm me-1" (click)="downloadPdf(appointment)">
+
+                                    PDF
+
+                                </button>
+
+                                <button class="btn btn-danger btn-sm" (click)="cancel(appointment.id!)"
                                     [disabled]="appointment.status=='CANCELLED'">
 
                                     Cancel
@@ -118,7 +218,7 @@
 
                         <tr *ngIf="appointments.length==0">
 
-                            <td colspan="12" class="text-center text-danger">
+                            <td colspan="12" class="text-center text-danger fw-bold">
 
                                 No Appointment Found
 
