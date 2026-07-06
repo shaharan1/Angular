@@ -38,6 +38,10 @@ export class DoctorModelService {
   getBySpecialization(specialization: string): Observable<DoctorModel[]> {
     return this.http.get<DoctorModel[]>(`${this.api}/specialization/${specialization}`);
   }
+  
+  getByDoctorDepartmentId(depId: number): Observable<DoctorModel[]> {
+    return this.http.get<DoctorModel[]>(`${this.api}/doctordepartment/${depId}`);
+  }
 
 
 

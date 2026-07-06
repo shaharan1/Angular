@@ -56,33 +56,33 @@ export class Doctor {
       name: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
-      password: [''],
+      password: ['', Validators.required],
 
-      gender: [''],
+      gender: ['', Validators.required],
 
       status: ['Active'],
 
-      study: [''],
+      study: ['', Validators.required],
 
       specialization: ['', Validators.required],
 
       designation: [''],
 
-      registrationNumber: [''],
+      registrationNumber: ['', Validators.required],
 
-      experienceYears: [0],
+      experienceYears: ['', Validators.required],
 
-      consultationFee: [0],
+      consultationFee: ['', Validators.required],
 
-      followUpFee: [0],
+      followUpFee: ['', Validators.required],
 
-      availableDays: [''],
+      availableDays: ['', Validators.required],
 
-      dutyHours: [''],
+      dutyHours: ['', Validators.required],
 
-      chamber: [''],
+      chamber: ['', Validators.required],
 
-      joinDate: [''],
+      joinDate: ['', Validators.required],
 
       photo: [''],
 
@@ -108,6 +108,7 @@ export class Doctor {
     this.doctorService.getById(id).subscribe(res => {
 
       this.doctorForm.patchValue(res);
+       this.cdr.markForCheck();
 
     });
 

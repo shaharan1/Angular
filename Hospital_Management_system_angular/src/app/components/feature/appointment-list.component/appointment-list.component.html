@@ -1,0 +1,139 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+
+            <h4 class="mb-0">Appointment List</h4>
+
+            <button
+                class="btn btn-light btn-sm"
+                (click)="loadAppointments()">
+
+                Refresh
+
+            </button>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Appointment No</th>
+
+                            <th>Patient</th>
+
+                            <th>Mobile</th>
+
+                            <th>Doctor</th>
+
+                            <th>Specialization</th>
+
+                            <th>Date</th>
+
+                            <th>Time</th>
+
+                            <th>Fee</th>
+
+                            <th>Status</th>
+
+                            <th>Payment</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let appointment of appointments; let i = index">
+
+                            <td>{{ i + 1 }}</td>
+
+                            <td>{{ appointment.appointmentNumber }}</td>
+
+                            <td>{{ appointment.patientName }}</td>
+
+                            <td>{{ appointment.mobileNumber }}</td>
+
+                            <td>{{ appointment.doctorName }}</td>
+
+                            <td>{{ appointment.doctorSpecialization }}</td>
+
+                            <td>{{ appointment.appointmentDate }}</td>
+
+                            <td>{{ appointment.appointmentTime }}</td>
+
+                            <td>{{ appointment.feeCharged }} Tk</td>
+
+                            <td>
+
+                                <span
+                                    class="badge"
+                                    [ngClass]="{
+                                      'bg-success': appointment.status=='BOOKED',
+                                      'bg-danger': appointment.status=='CANCELLED',
+                                      'bg-warning': appointment.status=='PENDING'
+                                    }">
+
+                                    {{appointment.status}}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                {{appointment.paymentMethod}}
+
+                            </td>
+
+                            <td>
+
+                                <button
+
+                                    class="btn btn-danger btn-sm"
+
+                                    (click)="cancel(appointment.id!)"
+
+                                    [disabled]="appointment.status=='CANCELLED'">
+
+                                    Cancel
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr *ngIf="appointments.length==0">
+
+                            <td colspan="12" class="text-center text-danger">
+
+                                No Appointment Found
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
