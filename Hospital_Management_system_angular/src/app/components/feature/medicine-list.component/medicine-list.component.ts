@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MedicineModel } from '../../../models/medicineModel';
 import { MedicineService } from '../../../services/medicine.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-medicine-list.component',
@@ -17,7 +18,8 @@ export class MedicineListComponent implements OnInit {
 
   constructor(
     private medicineService: MedicineService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+     private router: Router
 
   ) { }
 
@@ -55,6 +57,12 @@ export class MedicineListComponent implements OnInit {
     }
 
   }
+
+  edit(id: number) {
+
+  this.router.navigate(['/medicine', id]);
+
+}
 
 
 

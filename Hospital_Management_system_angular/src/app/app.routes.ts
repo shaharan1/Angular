@@ -11,6 +11,8 @@ import { ScheduleSlotComponent } from './components/feature/schedule-slot.compon
 import { AppointmentList } from './components/feature/appointment-list.component/appointment-list.component';
 import { AppointmentComponent } from './components/feature/appointment.component/appointment.component';
 import { AppointmentSlip } from './components/feature/appointment-slip/appointment-slip';
+import { MedicineComponent } from './components/feature/medicine.component/medicine.component';
+import { MedicineListComponent } from './components/feature/medicine-list.component/medicine-list.component';
 
 export const routes: Routes = [
 
@@ -87,7 +89,23 @@ export const routes: Routes = [
   {
     path: 'appointment-slip',
     component: AppointmentSlip
-  }
+  },
+
+   // Medicine
+  {
+    path: 'medicine',
+    component: MedicineComponent
+  },
+
+  {
+    path: 'medicine-list',
+    component: MedicineListComponent
+  },
+
+  {
+    path: 'medicine/:id',
+    component: MedicineComponent
+},
 
 
 
