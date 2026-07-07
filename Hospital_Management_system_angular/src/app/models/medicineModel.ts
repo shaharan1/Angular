@@ -1,7 +1,12 @@
 export interface MedicineModel {
   id?: number;
+
   medicineName: string;
-  genericName: string;
+
+  genericId?: number;
+  genericName?: string;
+
   dosage: string;
+
   prescriptionId?: number;
 }

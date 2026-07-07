@@ -38,5 +38,11 @@ export class MedicineService {
     return this.http.get<MedicineModel[]>(`${this.apiUrl}/by-prescription/${id}`);
   }
 
+  getMedicineByGeneric(id: number) {
+  return this.http.get<MedicineModel[]>(
+    this.apiUrl + '/generic/' + id
+  );
+}
+
 
 }

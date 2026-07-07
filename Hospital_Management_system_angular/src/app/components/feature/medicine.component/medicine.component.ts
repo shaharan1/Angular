@@ -1,95 +1,94 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MedicineModel } from '../../../models/medicineModel';
+
+import { GenericService } from '../../../services/generic.service';
 import { MedicineService } from '../../../services/medicine.service';
+import { GenericModel } from '../../../models/genericModel';
+import { MedicineModel } from '../../../models/medicineModel';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-medicine.component',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  selector: 'app-medicine',
+   imports: [ CommonModule,FormsModule  ],
   templateUrl: './medicine.component.html',
-  styleUrl: './medicine.component.css',
+  styleUrls: ['./medicine.component.css']
 })
 export class MedicineComponent implements OnInit {
 
+  generics: GenericModel[] = [];
+
+  medicineList: MedicineModel[] = [];
+
+  selectedGenericId: number | null = null;
+
   medicine: MedicineModel = {
     medicineName: '',
-    genericName: '',
     dosage: '',
-    
+    genericId: 0,
     prescriptionId: 1
   };
 
-  id?: number;
-
   constructor(
+    private genericService: GenericService,
     private medicineService: MedicineService,
-    private route: ActivatedRoute,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.loadGenerics();
+  }
 
-    const id = this.route.snapshot.paramMap.get('id');
+  loadGenerics() {
+    this.genericService.getAll().subscribe(data => {
+      this.generics = data;
+      this.cdr.markForCheck();
+    });
+  }
 
-    if (id) {
+  onGenericChange() {
 
-      this.id = +id;
+    if (!this.selectedGenericId) {
+      this.medicineList = [];
+      return;
+    }
 
-      this.medicineService.getById(this.id).subscribe({
+    this.medicine.genericId = this.selectedGenericId;
 
-        next: (res) => {
+    this.medicineService
+      .getMedicineByGeneric(this.selectedGenericId)
+      .subscribe(data => {
 
-          this.medicine = res;
-          this.cdr.detectChanges();
-
-        },
-
-        error: (err) => console.log(err)
+        this.medicineList = data;
 
       });
-
-    }
 
   }
 
   save() {
 
-    if (this.id) {
+    this.medicine.genericId = this.selectedGenericId!;
 
-      this.medicineService.update(this.id, this.medicine).subscribe({
+    this.medicineService.save(this.medicine).subscribe({
 
-        next: () => {
+      next: (res) => {
 
-          alert("Medicine Updated Successfully");
+        alert("Medicine Saved Successfully");
 
-          this.router.navigate(['/medicine-list']);
+        console.log(res);
 
-        },
+        this.router.navigate(['/medicine-list']);
 
-        error: (err) => console.log(err)
+      },
 
-      });
+      error: (err) => {
 
-    } else {
+        console.log(err);
 
-      this.medicineService.save(this.medicine).subscribe({
+      }
 
-        next: () => {
-
-          alert("Medicine Saved Successfully");
-
-          this.router.navigate(['/medicine-list']);
-
-        },
-
-        error: (err) => console.log(err)
-
-      });
-
-    }
+    });
 
   }
 

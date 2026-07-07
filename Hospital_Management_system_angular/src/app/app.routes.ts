@@ -13,6 +13,8 @@ import { AppointmentComponent } from './components/feature/appointment.component
 import { AppointmentSlip } from './components/feature/appointment-slip/appointment-slip';
 import { MedicineComponent } from './components/feature/medicine.component/medicine.component';
 import { MedicineListComponent } from './components/feature/medicine-list.component/medicine-list.component';
+import { Generic } from './components/feature/generic/generic';
+import { GenericListComponent } from './components/feature/generic-list/generic-list';
 
 export const routes: Routes = [
 
@@ -91,7 +93,7 @@ export const routes: Routes = [
     component: AppointmentSlip
   },
 
-   // Medicine
+  // Medicine
   {
     path: 'medicine',
     component: MedicineComponent
@@ -105,7 +107,18 @@ export const routes: Routes = [
   {
     path: 'medicine/:id',
     component: MedicineComponent
+  },
+
+  {
+  path: 'generics',
+  component: Generic
 },
+{
+  path: 'generic-list',
+  component: GenericListComponent
+}
+
+
 
 
 
