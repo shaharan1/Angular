@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MedicineModel } from '../../../models/medicineModel';
 import { MedicineService } from '../../../services/medicine.service';
 
@@ -10,51 +11,86 @@ import { MedicineService } from '../../../services/medicine.service';
   templateUrl: './medicine.component.html',
   styleUrl: './medicine.component.css',
 })
-export class MedicineComponent {
-
+export class MedicineComponent implements OnInit {
 
   medicine: MedicineModel = {
-
     medicineName: '',
     genericName: '',
     dosage: '',
-    frequency: '',
-    route: '',
-    duration: '',
-    applyWay: '',
-    quantity: 1,
-    startDate: '',
-    instructions: '',
-    active: true,
+    
     prescriptionId: 1
-
   };
+
+  id?: number;
 
   constructor(
     private medicineService: MedicineService,
+    private route: ActivatedRoute,
+    private router: Router,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {}
 
-  save() {
+  ngOnInit(): void {
 
-    this.medicineService.save(this.medicine).subscribe({
+    const id = this.route.snapshot.paramMap.get('id');
 
-      next: () => {
+    if (id) {
 
-        alert("Medicine Saved Successfully");
+      this.id = +id;
 
-      },
+      this.medicineService.getById(this.id).subscribe({
 
-      error: (err) => {
+        next: (res) => {
 
-        console.log(err);
+          this.medicine = res;
+          this.cdr.detectChanges();
 
-      }
+        },
 
-    });
+        error: (err) => console.log(err)
+
+      });
+
+    }
 
   }
 
+  save() {
 
+    if (this.id) {
+
+      this.medicineService.update(this.id, this.medicine).subscribe({
+
+        next: () => {
+
+          alert("Medicine Updated Successfully");
+
+          this.router.navigate(['/medicine-list']);
+
+        },
+
+        error: (err) => console.log(err)
+
+      });
+
+    } else {
+
+      this.medicineService.save(this.medicine).subscribe({
+
+        next: () => {
+
+          alert("Medicine Saved Successfully");
+
+          this.router.navigate(['/medicine-list']);
+
+        },
+
+        error: (err) => console.log(err)
+
+      });
+
+    }
+
+  }
 
 }

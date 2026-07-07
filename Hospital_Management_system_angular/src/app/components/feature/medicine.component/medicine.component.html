@@ -1,167 +1,68 @@
 <div class="container mt-4">
 
-<div class="card shadow">
-
-<div class="card-header bg-primary text-white">
-
-<h4>Add Medicine</h4>
-
-</div>
-
-<div class="card-body">
-
-<div class="row">
-
-<div class="col-md-6 mb-3">
-
-<label>Medicine Name</label>
-
-<input
-class="form-control"
-[(ngModel)]="medicine.medicineName">
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label>Generic Name</label>
-
-<input
-class="form-control"
-[(ngModel)]="medicine.genericName">
-
-</div>
-
-<div class="col-md-4">
-
-<label>Dosage</label>
-
-<input
-class="form-control"
-[(ngModel)]="medicine.dosage">
-
-</div>
-
-<div class="col-md-4">
-
-<label>Frequency</label>
-
-<input
-class="form-control"
-[(ngModel)]="medicine.frequency">
-
-</div>
-
-<div class="col-md-4">
-
-<label>Route</label>
-
-<input
-class="form-control"
-[(ngModel)]="medicine.route">
-
-</div>
-
-<div class="col-md-4">
-
-<label>Duration</label>
-
-<input
-class="form-control"
-[(ngModel)]="medicine.duration">
-
-</div>
-
-<div class="col-md-4">
-
-<label>Apply Way</label>
-
-<input
-class="form-control"
-[(ngModel)]="medicine.applyWay">
-
-</div>
-
-<div class="col-md-4">
-
-<label>Quantity</label>
-
-<input
-type="number"
-class="form-control"
-[(ngModel)]="medicine.quantity">
-
-</div>
-
-<div class="col-md-6">
-
-<label>Start Date</label>
-
-<input
-type="date"
-class="form-control"
-[(ngModel)]="medicine.startDate">
-
-</div>
-
-<div class="col-md-6">
-
-<label>Prescription Id</label>
-
-<input
-type="number"
-class="form-control"
-[(ngModel)]="medicine.prescriptionId">
-
-</div>
-
-<div class="col-md-12 mt-3">
-
-<label>Instructions</label>
-
-<textarea
-rows="3"
-class="form-control"
-[(ngModel)]="medicine.instructions">
-</textarea>
-
-</div>
-
-<div class="col-md-3 mt-3">
-
-<div class="form-check">
-
-<input
-type="checkbox"
-class="form-check-input"
-[(ngModel)]="medicine.active">
-
-<label class="form-check-label">
-
-Active
-
-</label>
-
-</div>
-
-</div>
-
-<div class="col-md-12 mt-4">
-
-<button
-class="btn btn-success"
-(click)="save()">
-
-Save Medicine
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+  <div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+      <h4>Add Medicine</h4>
+    </div>
+
+    <div class="card-body">
+
+      <div class="row">
+
+        <!-- Medicine Name -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Medicine Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="medicine.medicineName"
+            name="medicineName">
+        </div>
+
+        <!-- Generic Name -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Generic Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="medicine.genericName"
+            name="genericName">
+        </div>
+
+        <!-- Dosage -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Dosage</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="medicine.dosage"
+            name="dosage">
+        </div>
+
+        <!-- Prescription Id -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Prescription Id</label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="medicine.prescriptionId"
+            name="prescriptionId">
+        </div>
+
+        <!-- Save Button -->
+        <div class="col-12 mt-4">
+          <button
+            class="btn btn-success"
+            (click)="save()">
+            Save Medicine
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
