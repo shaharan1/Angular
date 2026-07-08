@@ -1,0 +1,152 @@
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { PatientModel } from '../../../models/patientModel';
+import { PatientService } from '../../../services/patient.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-patient-list.component',
+  imports: [CommonModule,FormsModule],
+  templateUrl: './patient-list.component.html',
+  styleUrl: './patient-list.component.css',
+})
+export class PatientListComponent implements OnInit{
+
+
+patients: PatientModel[] = [];
+  filteredPatients: PatientModel[] = [];
+
+  // Search & Filter
+  searchText: string = '';
+  patientCode: string = '';
+  selectedGender: string = '';
+  selectedBloodGroup: string = '';
+
+  constructor(
+    private patientService: PatientService,
+    private router: Router,
+    private cdr:ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.loadPatients();
+  }
+
+ 
+  // Load All Patients
+ 
+  loadPatients(): void {
+
+    this.patientService.getAll().subscribe({
+
+      next: (data) => {
+        this.patients = data;
+        this.filteredPatients = data;
+        this.cdr.markForCheck();
+      },
+
+      error: (err) => {
+        console.log(err);
+      }
+
+    });
+
+  }
+
+ 
+  // Search & Filter
+ 
+  filterPatients(): void {
+
+    this.filteredPatients = this.patients.filter(patient => {
+
+      const matchesName =
+        !this.searchText ||
+        patient.name.toLowerCase().includes(this.searchText.toLowerCase());
+
+      const matchesCode =
+        !this.patientCode ||
+        (patient.patientCode ?? '').toLowerCase().includes(this.patientCode.toLowerCase());
+
+      const matchesGender =
+        !this.selectedGender ||
+        patient.gender === this.selectedGender;
+
+      const matchesBlood =
+        !this.selectedBloodGroup ||
+        patient.bloodGroup === this.selectedBloodGroup;
+
+      return (
+        matchesName &&
+        matchesCode &&
+        matchesGender &&
+        matchesBlood
+      );
+
+    });
+
+  }
+
+  
+  // Edit
+ 
+  edit(id: number): void {
+
+    this.router.navigate(['/patient/edit', id]);
+
+  }
+
+  
+  // View Details
+  
+  view(id: number): void {
+
+    this.router.navigate(['/patient-details', id]);
+
+  }
+
+ 
+  // Delete
+ 
+  delete(id: number): void {
+
+    if (!confirm('Are you sure you want to delete this patient?')) {
+      return;
+    }
+
+    this.patientService.delete(id).subscribe({
+
+      next: () => {
+
+        alert('Patient deleted successfully.');
+
+        this.loadPatients();
+
+      },
+
+      error: (err) => {
+
+        console.log(err);
+
+      }
+
+    });
+
+  }
+
+ 
+  // Clear Filters
+ 
+  clearFilters(): void {
+
+    this.searchText = '';
+    this.patientCode = '';
+    this.selectedGender = '';
+    this.selectedBloodGroup = '';
+
+    this.filteredPatients = this.patients;
+
+  }
+
+}
