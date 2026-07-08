@@ -100,11 +100,9 @@ patients: PatientModel[] = [];
   
   // View Details
   
-  view(id: number): void {
-
-    this.router.navigate(['/patient-details', id]);
-
-  }
+ view(id: number) {
+  this.router.navigate(['/patient/edit', id]);
+}
 
  
   // Delete
