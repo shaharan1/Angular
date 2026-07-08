@@ -95,7 +95,7 @@ export const routes: Routes = [
 
   // Medicine
   {
-    path: 'medicine',
+    path: 'medicines/create',
     component: MedicineComponent
   },
 

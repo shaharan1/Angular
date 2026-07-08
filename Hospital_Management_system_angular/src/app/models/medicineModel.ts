@@ -8,5 +8,5 @@ export interface MedicineModel {
 
   dosage: string;
 
-  prescriptionId?: number;
+  // prescriptionId?: number;
 }
