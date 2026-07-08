@@ -1,8 +1,8 @@
-
-
 export interface PatientModel {
 
   id?: number;
+
+  appointmentId?: number | null;
 
   patientCode?: string;
 
@@ -17,6 +17,7 @@ export interface PatientModel {
   alternatePhone: string;
 
   email: string;
+
   nationalId: string;
 
   address: string;
