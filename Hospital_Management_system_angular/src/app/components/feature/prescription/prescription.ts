@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { PrescriptionModel } from '../../../models/prescriptionModel';
 import { PrescriptionService } from '../../../services/prescription.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppointmentService } from '../../../services/appointment.service';
+import { DoctorModelService } from '../../../services/doctor.service';
 
 @Component({
   selector: 'app-prescription',
@@ -35,6 +37,8 @@ export class PrescriptionComponent implements OnInit {
   };
 
   constructor(
+    private appointmentService: AppointmentService,
+        private doctorService: DoctorModelService,
     private service: PrescriptionService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,

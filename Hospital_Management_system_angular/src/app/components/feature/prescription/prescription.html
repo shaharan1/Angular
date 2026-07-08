@@ -1,1 +1,140 @@
-<p>prescription works!</p>
+<div class="container mt-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-primary text-white">
+
+<h4>Prescription</h4>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<label>Appointment Id</label>
+
+<input
+class="form-control"
+type="number"
+[(ngModel)]="prescription.appointmentId">
+
+</div>
+
+<div class="col-md-4">
+
+<label>Doctor Id</label>
+
+<input
+class="form-control"
+type="number"
+[(ngModel)]="prescription.doctorId">
+
+</div>
+
+<div class="col-md-4">
+
+<label>Patient Id</label>
+
+<input
+class="form-control"
+type="number"
+[(ngModel)]="prescription.patientId">
+
+</div>
+
+<div class="col-md-12 mt-3">
+
+<label>Diagnosis</label>
+
+<textarea
+class="form-control"
+[(ngModel)]="prescription.diagnosis"></textarea>
+
+</div>
+
+</div>
+
+<hr>
+
+<h5>Medicines</h5>
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Medicine</th>
+
+<th>Dosage</th>
+
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let item of prescription.prescriptionItems;let i=index">
+
+<td>
+
+<input
+class="form-control"
+[(ngModel)]="item.medicineName">
+
+</td>
+
+<td>
+
+<input
+class="form-control"
+[(ngModel)]="item.dosage">
+
+</td>
+
+<td>
+
+<button
+class="btn btn-danger"
+(click)="removeMedicine(i)">
+
+Remove
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button
+class="btn btn-primary"
+(click)="addMedicine()">
+
++ Add Medicine
+
+</button>
+
+<hr>
+
+<button
+class="btn btn-success"
+(click)="save()">
+
+Save Prescription
+
+</button>
+
+</div>
+
+</div>
+
+</div>

@@ -15,6 +15,7 @@ import { MedicineComponent } from './components/feature/medicine.component/medic
 import { MedicineListComponent } from './components/feature/medicine-list.component/medicine-list.component';
 import { Generic } from './components/feature/generic/generic';
 import { GenericListComponent } from './components/feature/generic-list/generic-list';
+import { PrescriptionComponent } from './components/feature/prescription/prescription';
 
 export const routes: Routes = [
 
@@ -116,6 +117,15 @@ export const routes: Routes = [
 {
   path: 'generic-list',
   component: GenericListComponent
+},
+
+{
+  path: 'prescriptions',
+  component: PrescriptionComponent
+},
+{
+  path: 'prescriptions/edit/:id',
+  component: PrescriptionComponent
 }
 
 
