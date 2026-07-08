@@ -3,11 +3,11 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PatientModel } from '../../../models/patientModel';
 import { PatientService } from '../../../services/patient.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-patient-list.component',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css',
 })
