@@ -9,9 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class PatientService {
 
-private apiUrl = environment.apiUrl + 'patients';
+  private apiUrl = environment.apiUrl + 'patients';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+
 
   save(patient: PatientModel): Observable<PatientModel> {
     return this.http.post<PatientModel>(this.apiUrl, patient);

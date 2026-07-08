@@ -14,6 +14,8 @@ import { AppointmentService } from '../../../services/appointment.service';
 })
 export class PatientComponent implements OnInit {
 
+  appointmentNumber: string = '';
+
   patient: PatientModel = {
 
     appointmentId: null,
@@ -92,6 +94,7 @@ export class PatientComponent implements OnInit {
       next: (res) => {
 
         this.appointments = res;
+        this.cdr.markForCheck();
 
       },
 
@@ -106,29 +109,34 @@ export class PatientComponent implements OnInit {
   }
 
 
-  loadAppointment() {
+  searchAppointment() {
 
-    if (!this.patient.appointmentId) {
-      alert("Please enter Appointment ID");
+    const appointmentNo = this.appointmentNumber.trim();
+
+    if (!appointmentNo) {
+      alert("Please enter Appointment Number");
       return;
     }
 
-    this.appointmentService.getById(this.patient.appointmentId).subscribe({
-
+    this.appointmentService.getByAppointmentNumber(appointmentNo).subscribe({
       next: (res) => {
-
+        this.patient.appointmentId = res.id;
         this.patient.name = res.patientName;
         this.patient.phone = res.mobileNumber;
-
+        this.cdr.markForCheck();
       },
-
-      error: () => {
-        alert("Appointment not found");
+      error: (err) => {
+        console.log(err);
       }
-
     });
 
   }
+
+  loadAppointment() {
+    this.searchAppointment();
+  }
+
+
 
   save() {
 
