@@ -90,13 +90,12 @@ export class MedicineComponent implements OnInit {
       });
   }
 
-  // ৩. সেভ এবং এডিট দুই কাজই এই মেথড দিয়ে হ্যান্ডেল হবে
+ 
   save() {
     this.medicine.genericId = this.selectedGenericId!;
 
     if (this.isEditMode && this.medicineId) {
-      // এডিট মোড চালু থাকলে Update মেথড কল হবে
-      // নিশ্চিত করুন আপনার medicineService-এ update(id, data) মেথডটি তৈরি করা আছে
+     
       this.medicineService.update(this.medicineId, this.medicine).subscribe({
         next: (res) => {
           alert("Medicine Updated Successfully");
@@ -107,7 +106,7 @@ export class MedicineComponent implements OnInit {
         }
       });
     } else {
-      // এডিট মোড না থাকলে আগের মতোই নতুন ডাটা সেভ হবে
+      
       this.medicineService.save(this.medicine).subscribe({
         next: (res) => {
           alert("Medicine Saved Successfully");
