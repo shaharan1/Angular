@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DoctorDepartmentModel } from '../../../models/doctorDepartmentModel';
-import { DoctorsDepartmentService } from '../../../services/doctors-department';
+import { DoctorDepartmentModel } from '../../../../models/doctorDepartmentModel';
+import { DoctorsDepartmentService } from '../../../../services/doctors-department';
 
 @Component({
   selector: 'app-doctor-department',

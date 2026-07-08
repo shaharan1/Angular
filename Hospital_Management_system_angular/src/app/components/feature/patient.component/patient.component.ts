@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PatientModel } from '../../../models/patientModel';
 import { PatientService } from '../../../services/patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppointmentService } from '../../../services/appointment.service';
 
 @Component({
   selector: 'app-patient.component',
@@ -14,6 +15,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PatientComponent implements OnInit {
 
   patient: PatientModel = {
+
+    appointmentId: null,
 
     name: '',
     gender: '',
@@ -39,14 +42,19 @@ export class PatientComponent implements OnInit {
 
   };
 
+  appointments: any[] = [];
+
   constructor(
     private service: PatientService,
+    private appointmentService: AppointmentService,
     private route: ActivatedRoute,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+
+    this.loadAppointments();
 
     this.route.params.subscribe(params => {
 
@@ -72,6 +80,51 @@ export class PatientComponent implements OnInit {
       },
 
       error: err => console.log(err)
+
+    });
+
+  }
+
+  loadAppointments() {
+
+    this.appointmentService.getAllAppointments().subscribe({
+
+      next: (res) => {
+
+        this.appointments = res;
+
+      },
+
+      error: (err) => {
+
+        console.log(err);
+
+      }
+
+    });
+
+  }
+
+
+  loadAppointment() {
+
+    if (!this.patient.appointmentId) {
+      alert("Please enter Appointment ID");
+      return;
+    }
+
+    this.appointmentService.getById(this.patient.appointmentId).subscribe({
+
+      next: (res) => {
+
+        this.patient.name = res.patientName;
+        this.patient.phone = res.mobileNumber;
+
+      },
+
+      error: () => {
+        alert("Appointment not found");
+      }
 
     });
 

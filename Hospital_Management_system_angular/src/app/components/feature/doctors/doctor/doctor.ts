@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DoctorModelService } from '../../../services/doctor.service';
+import { DoctorModelService } from '../../../../services/doctor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { DoctorsDepartmentService } from '../../../services/doctors-department';
+import { DoctorsDepartmentService } from '../../../../services/doctors-department';
 
 @Component({
   selector: 'app-doctor',
@@ -108,7 +108,7 @@ export class Doctor {
     this.doctorService.getById(id).subscribe(res => {
 
       this.doctorForm.patchValue(res);
-       this.cdr.markForCheck();
+      this.cdr.markForCheck();
 
     });
 

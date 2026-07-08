@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
-import { Doctor } from './components/feature/doctor/doctor';
-import { DoctorList } from './components/feature/doctor-list/doctor-list';
-import { DoctorDepartment } from './components/feature/doctor-department/doctor-department';
+import { Doctor } from './components/feature/doctors/doctor/doctor';
+import { DoctorList } from './components/feature/doctors/doctor-list/doctor-list';
+import { DoctorDepartment } from './components/feature/doctors/doctor-department/doctor-department';
 import { Nurse } from './components/feature/nurse/nurse';
 import { NurseList } from './components/feature/nurse-list/nurse-list';
 import { OfficeStaffComponent } from './components/feature/office-staff.component/office-staff.component';
@@ -18,6 +18,10 @@ import { GenericListComponent } from './components/feature/generic-list/generic-
 import { PrescriptionComponent } from './components/feature/prescription/prescription';
 import { PatientComponent } from './components/feature/patient.component/patient.component';
 import { PatientListComponent } from './components/feature/patient-list.component/patient-list.component';
+import { LoginComponent } from './components/auth/login-component/login-component';
+import { RoleRedirect } from './components/auth/role-redirect/role-redirect';
+import { authGuard } from './guard/auth-guard-guard';
+import { DoctorDashboardComponent } from './components/feature/doctors/doctor-dashboard-component/doctor-dashboard-component';
 
 export const routes: Routes = [
 
@@ -113,24 +117,24 @@ export const routes: Routes = [
   },
 
   {
-  path: 'generics',
-  component: Generic
-},
-{
-  path: 'generic-list',
-  component: GenericListComponent
-},
+    path: 'generics',
+    component: Generic
+  },
+  {
+    path: 'generic-list',
+    component: GenericListComponent
+  },
 
-{
-  path: 'prescriptions',
-  component: PrescriptionComponent
-},
-{
-  path: 'prescriptions/edit/:id',
-  component: PrescriptionComponent
-},
+  {
+    path: 'prescriptions',
+    component: PrescriptionComponent
+  },
+  {
+    path: 'prescriptions/edit/:id',
+    component: PrescriptionComponent
+  },
 
-{
+  {
     path: 'patient',
     component: PatientComponent
   },
@@ -146,7 +150,16 @@ export const routes: Routes = [
   },
 
 
+  //Login
 
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+
+  { path: 'dashboard', component: RoleRedirect },
+  { path: 'doctor-dashboard', component: DoctorDashboardComponent },
 
 
 

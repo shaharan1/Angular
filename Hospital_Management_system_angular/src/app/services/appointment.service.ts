@@ -78,5 +78,9 @@ export class AppointmentService {
 
   }
 
+  getById(id: number): Observable<AppointmentModel> {
+    return this.http.get<AppointmentModel>(`${this.apiUrl}/${id}`);
+  }
+
 
 }

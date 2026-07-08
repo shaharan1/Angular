@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { DoctorModelService } from '../../../services/doctor.service';
-import { DoctorModel } from '../../../models/doctorModel';
+import { DoctorModelService } from '../../../../services/doctor.service';
+import { DoctorModel } from '../../../../models/doctorModel';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
