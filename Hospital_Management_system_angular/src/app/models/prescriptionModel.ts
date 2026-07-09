@@ -17,6 +17,7 @@ export interface PrescriptionModel {
   doctorId: number | null;
   patientId: number | null;
 
+
   diagnosis: string;
   chiefComplaints: string;
   symptoms: string;
@@ -31,4 +32,6 @@ export interface PrescriptionModel {
   nextFollowUpDate: string;
 
   prescriptionItems: PrescriptionItemModel[];
+
+  testIds: number[];
 }

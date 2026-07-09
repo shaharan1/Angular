@@ -17,8 +17,8 @@ import { MedicineService } from '../../../services/medicine.service';
 })
 export class PrescriptionComponent implements OnInit {
 
-medicines: MedicineModel[] = [];
-filteredMedicines: MedicineModel[] = [];
+  medicines: MedicineModel[] = [];
+  filteredMedicines: MedicineModel[] = [];
 
   prescription: PrescriptionModel = {
 
@@ -38,7 +38,9 @@ filteredMedicines: MedicineModel[] = [];
     notes: '',
     nextFollowUpDate: '',
 
-    prescriptionItems: []
+    prescriptionItems: [],
+
+    testIds: []
   };
 
   constructor(
@@ -52,7 +54,7 @@ filteredMedicines: MedicineModel[] = [];
   ) { }
 
   ngOnInit(): void {
-this.loadMedicines();
+    this.loadMedicines();
 
     this.route.params.subscribe(params => {
 
@@ -73,11 +75,13 @@ this.loadMedicines();
   }
 
   loadMedicines() {
-  this.medicineService.getAll().subscribe({
-    next: (res) =>{this.medicines = res;
-    this.cdr.markForCheck();} 
-  });
-}
+    this.medicineService.getAll().subscribe({
+      next: (res) => {
+        this.medicines = res;
+        this.cdr.markForCheck();
+      }
+    });
+  }
 
   loadPrescription(id: number) {
 
@@ -101,39 +105,39 @@ this.loadMedicines();
   }
 
   searchMedicine(keyword: string) {
-  if (keyword.length < 2) {
-    this.filteredMedicines = [];
-    return;
+    if (keyword.length < 2) {
+      this.filteredMedicines = [];
+      return;
+    }
+
+    this.medicineService.search(keyword).subscribe({
+      next: (res) => {
+        this.filteredMedicines = res;
+      }
+    });
   }
 
-  this.medicineService.search(keyword).subscribe({
-    next: (res) => {
-      this.filteredMedicines = res;
-    }
-  });
-}
+  selectMedicine(item: any, medicine: MedicineModel): void {
 
-selectMedicine(item: any, medicine: MedicineModel): void {
+    item.medicineId = medicine.id;
+    item.medicineName = medicine.medicineName;
 
-  item.medicineId = medicine.id;
-  item.medicineName = medicine.medicineName;
+    this.filteredMedicines = [];
 
-  this.filteredMedicines = [];
+  }
 
-}
+  addMedicine(): void {
 
-  addMedicine() : void {
+    this.prescription.prescriptionItems.push({
 
-  this.prescription.prescriptionItems.push({
+      medicineId: 0,
+      dosage: '',
+      duration: '',
+      instruction: ''
 
-    medicineId: 0,
-    dosage: '',
-    duration: '',
-    instruction: ''
+    });
 
-  });
-
-}
+  }
 
   removeMedicine(index: number) {
 
