@@ -18,6 +18,7 @@ import { MedicineService } from '../../../services/medicine.service';
 export class PrescriptionComponent implements OnInit {
 
 medicines: MedicineModel[] = [];
+filteredMedicines: MedicineModel[] = [];
 
   prescription: PrescriptionModel = {
 
@@ -42,7 +43,7 @@ medicines: MedicineModel[] = [];
 
   constructor(
     private appointmentService: AppointmentService,
-        private doctorService: DoctorModelService,
+    private doctorService: DoctorModelService,
     private service: PrescriptionService,
     private medicineService: MedicineService,
     private cdr: ChangeDetectorRef,
@@ -71,13 +72,10 @@ this.loadMedicines();
 
   }
 
-  loadMedicines(): void {
+  loadMedicines() {
   this.medicineService.getAll().subscribe({
-    next: (res) => {
-      this.medicines = res;
-      this.cdr.markForCheck();
-    },
-    error: (err) => console.log(err)
+    next: (res) =>{this.medicines = res;
+    this.cdr.markForCheck();} 
   });
 }
 
@@ -101,6 +99,28 @@ this.loadMedicines();
     });
 
   }
+
+  searchMedicine(keyword: string) {
+  if (keyword.length < 2) {
+    this.filteredMedicines = [];
+    return;
+  }
+
+  this.medicineService.search(keyword).subscribe({
+    next: (res) => {
+      this.filteredMedicines = res;
+    }
+  });
+}
+
+selectMedicine(item: any, medicine: MedicineModel): void {
+
+  item.medicineId = medicine.id;
+  item.medicineName = medicine.medicineName;
+
+  this.filteredMedicines = [];
+
+}
 
   addMedicine() : void {
 

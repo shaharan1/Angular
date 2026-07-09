@@ -1,140 +1,211 @@
-<div class="container mt-4">
+<div class="container-fluid py-4">
 
-<div class="card shadow">
+    <div class="card shadow-lg border-0">
 
-<div class="card-header bg-primary text-white">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-file-earmark-medical"></i>
+                Prescription
+            </h3>
+        </div>
 
-<h4>Prescription</h4>
+        <div class="card-body">
 
-</div>
+            <!-- Basic Information -->
+            <div class="row g-3">
 
-<div class="card-body">
+                <div class="col-md-4">
+                    <label class="form-label">Appointment ID</label>
+                    <input type="number" class="form-control" [(ngModel)]="prescription.appointmentId">
+                </div>
 
-<div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Doctor ID</label>
+                    <input type="number" class="form-control" [(ngModel)]="prescription.doctorId">
+                </div>
 
-<div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label">Patient ID</label>
+                    <input type="number" class="form-control" [(ngModel)]="prescription.patientId">
+                </div>
 
-<label>Appointment Id</label>
+                <div class="col-md-6">
+                    <label class="form-label">Diagnosis</label>
+                    <textarea rows="3" class="form-control" [(ngModel)]="prescription.diagnosis">
+          </textarea>
+                </div>
 
-<input
-class="form-control"
-type="number"
-[(ngModel)]="prescription.appointmentId">
+                <div class="col-md-6">
+                    <label class="form-label">Chief Complaints</label>
+                    <textarea rows="3" class="form-control" [(ngModel)]="prescription.chiefComplaints">
+          </textarea>
+                </div>
 
-</div>
+                <div class="col-md-12">
+                    <label class="form-label">Symptoms</label>
+                    <textarea rows="2" class="form-control" [(ngModel)]="prescription.symptoms">
+          </textarea>
+                </div>
 
-<div class="col-md-4">
+            </div>
 
-<label>Doctor Id</label>
+            <hr>
 
-<input
-class="form-control"
-type="number"
-[(ngModel)]="prescription.doctorId">
+            <!-- Vitals -->
 
-</div>
+            <h5 class="mb-3">Patient Vitals</h5>
 
-<div class="col-md-4">
+            <div class="row g-3">
 
-<label>Patient Id</label>
+                <div class="col-md-3">
+                    <label>Blood Pressure</label>
+                    <input class="form-control" [(ngModel)]="prescription.bloodPressure">
+                </div>
 
-<input
-class="form-control"
-type="number"
-[(ngModel)]="prescription.patientId">
+                <div class="col-md-3">
+                    <label>Pulse Rate</label>
+                    <input class="form-control" [(ngModel)]="prescription.pulseRate">
+                </div>
 
-</div>
+                <div class="col-md-3">
+                    <label>Temperature</label>
+                    <input class="form-control" [(ngModel)]="prescription.bodyTemperature">
+                </div>
 
-<div class="col-md-12 mt-3">
+                <div class="col-md-3">
+                    <label>Weight</label>
+                    <input class="form-control" [(ngModel)]="prescription.weight">
+                </div>
 
-<label>Diagnosis</label>
+            </div>
 
-<textarea
-class="form-control"
-[(ngModel)]="prescription.diagnosis"></textarea>
+            <hr>
 
-</div>
+            <!-- Medicines -->
 
-</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
 
-<hr>
+                <h4 class="mb-0">
+                    Medicines
+                </h4>
 
-<h5>Medicines</h5>
+                <button class="btn btn-primary" (click)="addMedicine()">
 
-<table class="table table-bordered">
+                    + Add Medicine
 
-<thead>
+                </button>
 
-<tr>
+            </div>
 
-<th>Medicine</th>
+            <table class="table table-hover table-bordered align-middle">
 
-<th>Dosage</th>
+                <thead class="table-primary">
 
-<th></th>
+                    <tr>
 
-</tr>
+                        <th width="30%">Medicine</th>
+                        <th width="20%">Dosage</th>
+                        <th width="20%">Duration</th>
+                        <th width="20%">Instruction</th>
+                        <th width="10%">Action</th>
 
-</thead>
+                    </tr>
 
-<tbody>
+                </thead>
 
-<tr *ngFor="let item of prescription.prescriptionItems;let i=index">
+                <tbody>
 
-<td>
+                    <tr *ngFor="let item of prescription.prescriptionItems; let i=index">
 
-<input
-class="form-control"
-[(ngModel)]="item.medicineName">
+                        <td class="position-relative">
 
-</td>
+                            <input class="form-control" [(ngModel)]="item.medicineName"
+                                (input)="searchMedicine(item.medicineName || '')" placeholder="Search Medicine">
 
-<td>
+                            <div class="list-group search-box" *ngIf="filteredMedicines.length">
 
-<input
-class="form-control"
-[(ngModel)]="item.dosage">
+                                <button type="button" class="list-group-item list-group-item-action"
+                                    *ngFor="let medicine of filteredMedicines" (click)="selectMedicine(item, medicine)">
 
-</td>
+                                    {{medicine.medicineName}}
 
-<td>
+                                </button>
 
-<button
-class="btn btn-danger"
-(click)="removeMedicine(i)">
+                            </div>
 
-Remove
+                        </td>
 
-</button>
+                        <td>
 
-</td>
+                            <input class="form-control" [(ngModel)]="item.dosage" placeholder="1+1+1">
 
-</tr>
+                        </td>
 
-</tbody>
+                        <td>
 
-</table>
+                            <input class="form-control" [(ngModel)]="item.duration" placeholder="7 Days">
 
-<button
-class="btn btn-primary"
-(click)="addMedicine()">
+                        </td>
 
-+ Add Medicine
+                        <td>
 
-</button>
+                            <input class="form-control" [(ngModel)]="item.instruction" placeholder="After Meal">
 
-<hr>
+                        </td>
 
-<button
-class="btn btn-success"
-(click)="save()">
+                        <td class="text-center">
 
-Save Prescription
+                            <button class="btn btn-danger btn-sm" (click)="removeMedicine(i)">
 
-</button>
+                                Remove
 
-</div>
+                            </button>
 
-</div>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <hr>
+
+            <!-- Notes -->
+
+            <div class="row g-3">
+
+                <div class="col-md-8">
+
+                    <label>Notes</label>
+
+                    <textarea rows="4" class="form-control" [(ngModel)]="prescription.notes">
+          </textarea>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Next Follow Up</label>
+
+                    <input type="date" class="form-control" [(ngModel)]="prescription.nextFollowUpDate">
+
+                </div>
+
+            </div>
+
+            <div class="text-end mt-4">
+
+                <button class="btn btn-success btn-lg" (click)="save()">
+
+                    Save Prescription
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>

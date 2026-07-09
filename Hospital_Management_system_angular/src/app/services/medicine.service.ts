@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class MedicineService {
 
 
- private apiUrl = environment.apiUrl + "medicines";
+  private apiUrl = environment.apiUrl + "medicines";
 
   constructor(private http: HttpClient) { }
 
@@ -22,15 +22,15 @@ export class MedicineService {
     return this.http.get<MedicineModel[]>(this.apiUrl);
   }
 
-  getById(id:number): Observable<MedicineModel>{
+  getById(id: number): Observable<MedicineModel> {
     return this.http.get<MedicineModel>(`${this.apiUrl}/${id}`);
   }
 
-  update(id:number,data:MedicineModel):Observable<MedicineModel>{
-    return this.http.put<MedicineModel>(`${this.apiUrl}/${id}`,data);
+  update(id: number, data: MedicineModel): Observable<MedicineModel> {
+    return this.http.put<MedicineModel>(`${this.apiUrl}/${id}`, data);
   }
 
-  delete(id:number){
+  delete(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
@@ -39,10 +39,14 @@ export class MedicineService {
   // }
 
   getMedicineByGeneric(id: number) {
+    return this.http.get<MedicineModel[]>(
+      this.apiUrl + '/generic/' + id
+    );
+  }
+  search(keyword: string) {
   return this.http.get<MedicineModel[]>(
-    this.apiUrl + '/generic/' + id
+    `${this.apiUrl}/search?keyword=${keyword}`
   );
 }
-
 
 }

@@ -1,0 +1,77 @@
+.card{
+    border-radius:18px;
+}
+
+.card-header{
+    border-radius:18px 18px 0 0;
+}
+
+.form-control{
+
+    border-radius:10px;
+
+}
+
+.table{
+
+    vertical-align:middle;
+
+}
+
+.table thead th{
+
+    text-align:center;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.btn{
+
+    border-radius:10px;
+
+}
+
+textarea{
+
+    resize:none;
+
+}
+
+h4,h5{
+
+    font-weight:600;
+
+}
+
+body{
+
+    background:#f5f7fb;
+
+}
+
+.search-box{
+
+    position:absolute;
+
+    width:100%;
+
+    max-height:220px;
+
+    overflow-y:auto;
+
+    z-index:9999;
+
+    background:#fff;
+
+    border:1px solid #ddd;
+
+    border-radius:6px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+}
