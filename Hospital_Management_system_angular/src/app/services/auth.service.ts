@@ -55,4 +55,14 @@ export class AuthService {
   }
 
 
+
+      // ── Logout ───────────────────────────────────────────
+
+  logout(): void {
+    this.storage.clearSession();
+    this.router.navigate(['/login']);
+  }
+
+
+
 }

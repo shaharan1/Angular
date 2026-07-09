@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DoctorModel } from '../models/doctorModel';
+import { DoctorModel, DoctorResponseModel } from '../models/doctorModel';
 import { environment } from '../../environments/environment';
 
 
@@ -41,6 +41,12 @@ export class DoctorModelService {
   
   getByDoctorDepartmentId(depId: number): Observable<DoctorModel[]> {
     return this.http.get<DoctorModel[]>(`${this.api}/doctordepartment/${depId}`);
+  }
+
+
+
+  findByUserId(id: number): Observable<DoctorResponseModel> {
+    return this.http.get<DoctorResponseModel>(`${this.api}/user/${id}`);
   }
 
 

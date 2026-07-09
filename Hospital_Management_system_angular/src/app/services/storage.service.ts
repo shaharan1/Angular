@@ -9,7 +9,7 @@ export const KEYS = {
   USER: 'cm_user',
   CUSTOMER: 'cm_customer',
   RIDER: 'cm_rider',
-  AGENT: 'cm_agent'
+  Doctor: 'cm_doctor'
 };
 
 @Injectable({
