@@ -6,6 +6,8 @@ import { PrescriptionService } from '../../../services/prescription.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentService } from '../../../services/appointment.service';
 import { DoctorModelService } from '../../../services/doctor.service';
+import { MedicineModel } from '../../../models/medicineModel';
+import { MedicineService } from '../../../services/medicine.service';
 
 @Component({
   selector: 'app-prescription',
@@ -14,6 +16,8 @@ import { DoctorModelService } from '../../../services/doctor.service';
   styleUrl: './prescription.css',
 })
 export class PrescriptionComponent implements OnInit {
+
+medicines: MedicineModel[] = [];
 
   prescription: PrescriptionModel = {
 
@@ -40,12 +44,14 @@ export class PrescriptionComponent implements OnInit {
     private appointmentService: AppointmentService,
         private doctorService: DoctorModelService,
     private service: PrescriptionService,
+    private medicineService: MedicineService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+this.loadMedicines();
 
     this.route.params.subscribe(params => {
 
@@ -64,6 +70,16 @@ export class PrescriptionComponent implements OnInit {
     });
 
   }
+
+  loadMedicines(): void {
+  this.medicineService.getAll().subscribe({
+    next: (res) => {
+      this.medicines = res;
+      this.cdr.markForCheck();
+    },
+    error: (err) => console.log(err)
+  });
+}
 
   loadPrescription(id: number) {
 
@@ -86,16 +102,18 @@ export class PrescriptionComponent implements OnInit {
 
   }
 
-  addMedicine() {
+  addMedicine() : void {
 
-    this.prescription.prescriptionItems.push({
+  this.prescription.prescriptionItems.push({
 
-      medicineName: '',
-      dosage: ''
+    medicineId: 0,
+    dosage: '',
+    duration: '',
+    instruction: ''
 
-    });
+  });
 
-  }
+}
 
   removeMedicine(index: number) {
 

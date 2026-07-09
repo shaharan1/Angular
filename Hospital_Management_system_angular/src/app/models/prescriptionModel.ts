@@ -1,9 +1,13 @@
-
-
 export interface PrescriptionItemModel {
   id?: number;
-  medicineName: string;
+
+  medicineId: number;
+
+  medicineName?: string; // শুধু Display করার জন্য
+
   dosage: string;
+  duration: string;
+  instruction: string;
 }
 
 export interface PrescriptionModel {
