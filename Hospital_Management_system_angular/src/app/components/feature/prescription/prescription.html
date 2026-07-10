@@ -149,7 +149,17 @@
 
                         <td>
 
-                            <input class="form-control" [(ngModel)]="item.instruction" placeholder="After Meal">
+                            <select class="form-select" [(ngModel)]="item.instruction">
+
+                                <option value="">Select Instruction</option>
+
+                                <option *ngFor="let ins of instructions" [value]="ins">
+
+                                    {{ ins }}
+
+                                </option>
+
+                            </select>
 
                         </td>
 

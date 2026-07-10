@@ -53,6 +53,26 @@ export class PrescriptionComponent implements OnInit {
 
   };
 
+
+  instructions: string[] = [
+    'Before Meal',
+    'After Meal',
+    'With Meal',
+    'Empty Stomach',
+    'Before Breakfast',
+    'After Breakfast',
+    'Before Lunch',
+    'After Lunch',
+    'Before Dinner',
+    'After Dinner',
+    'Morning',
+    'Noon',
+    'Night',
+    'Morning & Night',
+    'As Needed (SOS)',
+    'At Bedtime'
+  ];
+
   constructor(
     private appointmentService: AppointmentService,
     private doctorService: DoctorModelService,
