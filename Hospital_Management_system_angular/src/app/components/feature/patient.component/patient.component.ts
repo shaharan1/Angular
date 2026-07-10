@@ -20,6 +20,8 @@ export class PatientComponent implements OnInit {
 
     appointmentId: null,
 
+    patientCode: '',
+
     name: '',
     gender: '',
     dateOfBirth: '',
@@ -180,6 +182,8 @@ export class PatientComponent implements OnInit {
   resetForm() {
 
     this.patient = {
+
+      patientCode: '',
 
       name: '',
       gender: '',
