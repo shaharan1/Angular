@@ -258,30 +258,33 @@
 
     <!-- Today's Appointments -->
 
-    <div class="card shadow border-0 mt-4">
+    <div class="card mt-4 shadow">
 
         <div class="card-header bg-primary text-white">
 
-            <h5 class="mb-0">
-                Today's Appointments
-            </h5>
+            Today's Appointments
 
         </div>
 
         <div class="card-body">
 
-            <table class="table table-hover align-middle">
+            <table class="table table-hover">
 
                 <thead>
 
                     <tr>
 
-                        <th>Token</th>
+                        <th>No</th>
+
                         <th>Patient</th>
+
                         <th>Phone</th>
+
                         <th>Time</th>
+
                         <th>Status</th>
-                        <th>Action</th>
+
+                        <th></th>
 
                     </tr>
 
@@ -289,27 +292,21 @@
 
                 <tbody>
 
-                    <tr *ngFor="let appointment of appointments">
+                    <tr *ngFor="let a of appointments">
 
-                        <td>{{appointment.appointmentNumber}}</td>
+                        <td>{{a.appointmentNumber}}</td>
 
-                        <td>{{appointment.patientName}}</td>
+                        <td>{{a.patientName}}</td>
 
-                        <td>{{appointment.mobileNumber}}</td>
+                        <td>{{a.mobileNumber}}</td>
 
-                        <td>{{appointment.appointmentTime}}</td>
+                        <td>{{a.appointmentTime}}</td>
 
-                        <td>
-
-                            <span class="badge bg-warning text-dark">
-                                {{appointment.status}}
-                            </span>
-
-                        </td>
+                        <td>{{a.status}}</td>
 
                         <td>
 
-                            <button class="btn btn-success btn-sm" (click)="createPrescription(appointment.id!)">
+                            <button class="btn btn-success btn-sm" [routerLink]="['/prescriptions/create',a.id]">
 
                                 Create Prescription
 

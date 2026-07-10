@@ -106,6 +106,15 @@ export class PrescriptionComponent implements OnInit {
 
     });
 
+    const appointmentId =
+      Number(this.route.snapshot.paramMap.get('appointmentId'));
+
+    if (appointmentId) {
+
+      this.loadAppointment(appointmentId);
+
+    }
+
   }
 
   loadMedicines() {

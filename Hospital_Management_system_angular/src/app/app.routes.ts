@@ -166,5 +166,8 @@ export const routes: Routes = [
     component: PrescriptionComponent
   }
 
-
+{
+    path: 'prescriptions/create/:appointmentId',
+    component: PrescriptionComponent
+  }
 ];

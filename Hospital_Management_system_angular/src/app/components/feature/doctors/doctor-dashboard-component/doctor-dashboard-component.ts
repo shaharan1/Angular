@@ -24,6 +24,8 @@ export class DoctorDashboardComponent {
   appointments: AppointmentModel[] = [];
   today = new Date().toISOString().substring(0, 10);
 
+
+
   loading = true;
 
   constructor(
@@ -59,7 +61,7 @@ export class DoctorDashboardComponent {
           this.doctor = res;
           this.storage.saveData(KEYS.Doctor, res);
           this.loading = false;
-          this.loadTodayAppointments();
+          this.loadAppointments();
           this.cdr.markForCheck();
 
           console.log("Doctor " + this.doctor);
@@ -76,18 +78,17 @@ export class DoctorDashboardComponent {
   }
 
 
-  loadTodayAppointments() {
+  loadAppointments() {
 
-    if (!this.doctor?.id) return;
+    if (!this.doctor?.id) {
+      return;
+    }
 
     this.appointmentService
-      .filterAppointments(
-        this.doctor.id,
-        this.today
-      )
+      .getDoctorAppointments(this.doctor.id)
       .subscribe({
 
-        next: (res) => {
+        next: res => {
 
           this.appointments = res;
 
