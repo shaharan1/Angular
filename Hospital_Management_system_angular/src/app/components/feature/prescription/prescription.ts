@@ -87,18 +87,21 @@ export class PrescriptionComponent implements OnInit {
   ngOnInit(): void {
     this.loadMedicines();
 
+    this.addMedicine();
+
     this.route.params.subscribe(params => {
 
-      const id = params['id'];
+      // Edit Prescription
+      if (params['id']) {
 
-      if (id) {
+        this.loadPrescription(+params['id']);
+        return;
+      }
 
-        this.loadPrescription(+id);
+      // Create From Appointment
+      if (params['appointmentId']) {
 
-      } else {
-
-        this.addMedicine();
-
+        this.loadAppointment(+params['appointmentId']);
       }
 
     });
@@ -113,6 +116,29 @@ export class PrescriptionComponent implements OnInit {
       }
     });
   }
+
+
+  loadAppointment(appointmentId: number) {
+
+    this.appointmentService
+      .getById(appointmentId)
+      .subscribe({
+
+        next: (res) => {
+
+          this.prescription.appointmentId = res.id!;
+          this.prescription.patientId = res.registeredPatientId!;
+          this.prescription.doctorId = res.doctorId!;
+          this.cdr.markForCheck();
+
+          console.log(res);
+
+        }
+
+      });
+
+  }
+
 
   loadPrescription(id: number) {
 
