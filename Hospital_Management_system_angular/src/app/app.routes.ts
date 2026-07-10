@@ -164,10 +164,14 @@ export const routes: Routes = [
   {
     path: 'doctor/prescription/:appointmentId',
     component: PrescriptionComponent
-  }
+  },
 
-{
+  {
     path: 'prescriptions/create/:appointmentId',
+    component: PrescriptionComponent
+  },
+  {
+    path: 'prescriptions/edit/:id',
     component: PrescriptionComponent
   }
 ];

@@ -8,11 +8,11 @@ import { LoginResponse } from '../../../../models/login.model';
 import { AuthService } from '../../../../services/auth.service';
 import { AppointmentModel } from '../../../../models/appointmentModel';
 import { AppointmentService } from '../../../../services/appointment.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-dashboard-component',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './doctor-dashboard-component.html',
   styleUrl: './doctor-dashboard-component.css',
 })
@@ -80,9 +80,9 @@ export class DoctorDashboardComponent {
 
   loadAppointments() {
 
-    if (!this.doctor?.id) {
-      return;
-    }
+    if (!this.doctor?.id) return;
+
+    console.log("Doctor Id =", this.doctor.id);
 
     this.appointmentService
       .getDoctorAppointments(this.doctor.id)
@@ -90,11 +90,15 @@ export class DoctorDashboardComponent {
 
         next: res => {
 
+          console.log("Appointments =", res);
+
           this.appointments = res;
 
           this.cdr.markForCheck();
 
-        }
+        },
+
+        error: err => console.log(err)
 
       });
 
