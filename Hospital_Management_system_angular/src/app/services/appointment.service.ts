@@ -84,5 +84,17 @@ export class AppointmentService {
     );
   }
 
+  getById(id: number) {
+
+    return this.http.get<AppointmentModel>(
+      `${this.apiUrl}/${id}`
+    );
+
+  }
+
+
+
+
+
 
 }
