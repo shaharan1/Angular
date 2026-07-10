@@ -71,15 +71,12 @@ export class PatientListComponent implements OnInit {
 
       const matchesPhone =
         !this.phone ||
-        patient.gender === this.phone;
-
-
+        (patient.phone ?? '').toLowerCase().includes(this.phone.toLowerCase());
 
       return (
         matchesName &&
         matchesCode &&
         matchesPhone
-
       );
 
     });
