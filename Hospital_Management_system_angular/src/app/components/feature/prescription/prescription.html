@@ -171,6 +171,149 @@
 
             <hr>
 
+            <!-- Tests -->
+
+            <hr>
+
+            <div class="card shadow-sm mt-4">
+
+                <div class="card-header bg-info text-white">
+
+                    <h5 class="mb-0">
+                        Diagnostic Tests
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <label class="form-label">
+                        Search Test
+                    </label>
+
+                    <input class="form-control" [ngModel]="testKeyword" (ngModelChange)="searchTest($event)"
+                        placeholder="Type CBC, Blood, X-Ray, MRI...">
+
+                    <!-- Search Result -->
+
+                    <div class="list-group mt-1" *ngIf="filteredTests.length">
+
+                        <button type="button" class="list-group-item list-group-item-action"
+                            *ngFor="let t of filteredTests" (click)="selectTest(t)">
+
+                            <div class="d-flex justify-content-between">
+
+                                <div>
+
+                                    <strong>{{t.testName}}</strong>
+
+                                    <br>
+
+                                    <small>{{t.testCode}}</small>
+
+                                </div>
+
+                                <span class="badge bg-primary">
+
+                                    {{t.standardPrice}} Tk
+
+                                </span>
+
+                            </div>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="card shadow-sm mt-3" *ngIf="selectedTests.length">
+
+                <div class="card-header bg-success text-white">
+
+                    <h5 class="mb-0">Selected Tests</h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-hover table-bordered">
+
+                        <thead class="table-success">
+
+                            <tr>
+
+                                <th>Code</th>
+
+                                <th>Test Name</th>
+
+                                <th>Price</th>
+
+                                <th width="120">Action</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr *ngFor="let test of selectedTests">
+
+                                <td>{{test.testCode}}</td>
+
+                                <td>{{test.testName}}</td>
+
+                                <td>{{test.standardPrice}} Tk</td>
+
+                                <td>
+
+                                    <button class="btn btn-danger btn-sm" (click)="removeTest(test)">
+
+                                        Remove
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot>
+
+                            <tr>
+
+                                <th colspan="2" class="text-end">
+
+                                    Total Cost
+
+                                </th>
+
+                                <th>
+
+                                    {{totalTestCost}} Tk
+
+                                </th>
+
+                                <th></th>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+
             <!-- Notes -->
 
             <div class="row g-3">

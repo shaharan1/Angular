@@ -8,6 +8,8 @@ import { AppointmentService } from '../../../services/appointment.service';
 import { DoctorModelService } from '../../../services/doctor.service';
 import { MedicineModel } from '../../../models/medicineModel';
 import { MedicineService } from '../../../services/medicine.service';
+import { TestMasterService } from '../../../services/test-master.service';
+import { TestMasterModel } from '../../../models/testMasterModel';
 
 @Component({
   selector: 'app-prescription',
@@ -19,6 +21,12 @@ export class PrescriptionComponent implements OnInit {
 
   medicines: MedicineModel[] = [];
   filteredMedicines: MedicineModel[] = [];
+
+  filteredTests: TestMasterModel[] = [];
+
+  selectedTests: TestMasterModel[] = [];
+
+  testKeyword = '';
 
   prescription: PrescriptionModel = {
 
@@ -40,7 +48,9 @@ export class PrescriptionComponent implements OnInit {
 
     prescriptionItems: [],
 
-    testIds: []
+    testIds: [],
+
+
   };
 
   constructor(
@@ -48,6 +58,7 @@ export class PrescriptionComponent implements OnInit {
     private doctorService: DoctorModelService,
     private service: PrescriptionService,
     private medicineService: MedicineService,
+    private testService: TestMasterService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router
@@ -142,6 +153,66 @@ export class PrescriptionComponent implements OnInit {
   removeMedicine(index: number) {
 
     this.prescription.prescriptionItems.splice(index, 1);
+
+  }
+
+  searchTest(keyword: string): void {
+
+    this.testKeyword = keyword;
+
+    if (!keyword || keyword.trim().length < 1) {
+
+      this.filteredTests = [];
+      return;
+
+    }
+
+    this.testService.search(keyword).subscribe({
+
+      next: (res) => {
+
+        this.filteredTests = res;
+
+      }
+
+    });
+
+  }
+
+  selectTest(test: TestMasterModel): void {
+
+    const exists = this.prescription.testIds.includes(test.id!);
+
+    if (!exists) {
+
+      this.prescription.testIds.push(test.id!);
+
+      this.selectedTests.push(test);
+
+    }
+
+    this.filteredTests = [];
+
+    this.testKeyword = '';
+
+  }
+
+  removeTest(test: TestMasterModel): void {
+
+    this.selectedTests =
+      this.selectedTests.filter(t => t.id !== test.id);
+
+    this.prescription.testIds =
+      this.prescription.testIds.filter(id => id !== test.id);
+
+  }
+
+  get totalTestCost(): number {
+
+    return this.selectedTests.reduce(
+      (sum, t) => sum + t.standardPrice,
+      0
+    );
 
   }
 

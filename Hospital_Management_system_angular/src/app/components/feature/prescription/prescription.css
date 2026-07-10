@@ -1,77 +1,107 @@
-.card{
-    border-radius:18px;
+.card {
+    border-radius: 18px;
 }
 
-.card-header{
-    border-radius:18px 18px 0 0;
+.card-header {
+    border-radius: 18px 18px 0 0;
 }
 
-.form-control{
+.form-control {
 
-    border-radius:10px;
-
-}
-
-.table{
-
-    vertical-align:middle;
+    border-radius: 10px;
 
 }
 
-.table thead th{
+.table {
 
-    text-align:center;
-
-}
-
-.table td{
-
-    vertical-align:middle;
+    vertical-align: middle;
 
 }
 
-.btn{
+.table thead th {
 
-    border-radius:10px;
-
-}
-
-textarea{
-
-    resize:none;
+    text-align: center;
 
 }
 
-h4,h5{
+.table td {
 
-    font-weight:600;
-
-}
-
-body{
-
-    background:#f5f7fb;
+    vertical-align: middle;
 
 }
 
-.search-box{
+.btn {
 
-    position:absolute;
+    border-radius: 10px;
 
-    width:100%;
+}
 
-    max-height:220px;
+textarea {
 
-    overflow-y:auto;
+    resize: none;
 
-    z-index:9999;
+}
 
-    background:#fff;
+h4,
+h5 {
 
-    border:1px solid #ddd;
+    font-weight: 600;
 
-    border-radius:6px;
+}
 
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
+body {
 
+    background: #f5f7fb;
+
+}
+
+.search-box {
+
+    position: absolute;
+
+    width: 100%;
+
+    max-height: 220px;
+
+    overflow-y: auto;
+
+    z-index: 9999;
+
+    background: #fff;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+
+}
+
+
+
+.list-group {
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+.list-group-item {
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.list-group-item:hover {
+    background: #e8f5ff;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.table th {
+    background: #f5f5f5;
+}
+
+.badge {
+    font-size: 13px;
 }
