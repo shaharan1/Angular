@@ -254,4 +254,80 @@
 
     </div>
 
+
+
+    <!-- Today's Appointments -->
+
+    <div class="card shadow border-0 mt-4">
+
+        <div class="card-header bg-primary text-white">
+
+            <h5 class="mb-0">
+                Today's Appointments
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Token</th>
+                        <th>Patient</th>
+                        <th>Phone</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let appointment of appointments">
+
+                        <td>{{appointment.appointmentNumber}}</td>
+
+                        <td>{{appointment.patientName}}</td>
+
+                        <td>{{appointment.mobileNumber}}</td>
+
+                        <td>{{appointment.appointmentTime}}</td>
+
+                        <td>
+
+                            <span class="badge bg-warning text-dark">
+                                {{appointment.status}}
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-success btn-sm" (click)="createPrescription(appointment.id!)">
+
+                                Create Prescription
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+
 </div>

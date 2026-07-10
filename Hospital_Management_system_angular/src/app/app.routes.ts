@@ -161,7 +161,10 @@ export const routes: Routes = [
   { path: 'dashboard', component: RoleRedirect },
   { path: 'doctor-dashboard', component: DoctorDashboardComponent },
 
-
+  {
+    path: 'doctor/prescription/:appointmentId',
+    component: PrescriptionComponent
+  }
 
 
 ];
