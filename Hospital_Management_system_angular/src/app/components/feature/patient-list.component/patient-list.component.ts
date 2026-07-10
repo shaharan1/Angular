@@ -7,35 +7,35 @@ import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-patient-list.component',
-  imports: [CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css',
 })
-export class PatientListComponent implements OnInit{
+export class PatientListComponent implements OnInit {
 
 
-patients: PatientModel[] = [];
+  patients: PatientModel[] = [];
   filteredPatients: PatientModel[] = [];
 
   // Search & Filter
   searchText: string = '';
   patientCode: string = '';
-  selectedGender: string = '';
-  selectedBloodGroup: string = '';
+  phone = '';
+
 
   constructor(
     private patientService: PatientService,
     private router: Router,
-    private cdr:ChangeDetectorRef
-  ) {}
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     this.loadPatients();
   }
 
- 
+
   // Load All Patients
- 
+
   loadPatients(): void {
 
     this.patientService.getAll().subscribe({
@@ -54,9 +54,9 @@ patients: PatientModel[] = [];
 
   }
 
- 
+
   // Search & Filter
- 
+
   filterPatients(): void {
 
     this.filteredPatients = this.patients.filter(patient => {
@@ -69,44 +69,42 @@ patients: PatientModel[] = [];
         !this.patientCode ||
         (patient.patientCode ?? '').toLowerCase().includes(this.patientCode.toLowerCase());
 
-      const matchesGender =
-        !this.selectedGender ||
-        patient.gender === this.selectedGender;
+      const matchesPhone =
+        !this.phone ||
+        patient.gender === this.phone;
 
-      const matchesBlood =
-        !this.selectedBloodGroup ||
-        patient.bloodGroup === this.selectedBloodGroup;
+
 
       return (
         matchesName &&
         matchesCode &&
-        matchesGender &&
-        matchesBlood
+        matchesPhone
+
       );
 
     });
 
   }
 
-  
+
   // Edit
- 
+
   edit(id: number): void {
 
     this.router.navigate(['/patient/edit', id]);
 
   }
 
-  
-  // View Details
-  
- view(id: number) {
-  this.router.navigate(['/patient/edit', id]);
-}
 
- 
+  // View Details
+
+  view(id: number) {
+    this.router.navigate(['/patient/edit', id]);
+  }
+
+
   // Delete
- 
+
   delete(id: number): void {
 
     if (!confirm('Are you sure you want to delete this patient?')) {
@@ -133,17 +131,16 @@ patients: PatientModel[] = [];
 
   }
 
- 
+
   // Clear Filters
- 
-  clearFilters(): void {
+
+  clearFilters() {
 
     this.searchText = '';
     this.patientCode = '';
-    this.selectedGender = '';
-    this.selectedBloodGroup = '';
+    this.phone = '';
 
-    this.filteredPatients = this.patients;
+    this.filteredPatients = [...this.patients];
 
   }
 
