@@ -22,6 +22,8 @@ import { LoginComponent } from './components/auth/login-component/login-componen
 import { RoleRedirect } from './components/auth/role-redirect/role-redirect';
 import { authGuard } from './guard/auth-guard-guard';
 import { DoctorDashboardComponent } from './components/feature/doctors/doctor-dashboard-component/doctor-dashboard-component';
+import { TestMasterComponent } from './components/feature/test-master.component/test-master.component';
+import { TestListComponent } from './components/feature/test-list.component/test-list.component';
 
 export const routes: Routes = [
 
@@ -173,5 +175,23 @@ export const routes: Routes = [
   {
     path: 'prescriptions/edit/:id',
     component: PrescriptionComponent
-  }
+  },
+
+  // ------TESTS-------
+
+  {
+  path:'tests/create',
+  component:TestMasterComponent
+},
+{
+  path:'tests/edit/:id',
+  component:TestMasterComponent
+},
+{
+  path:'test-list',
+  component:TestListComponent
+}
+
+
+
 ];

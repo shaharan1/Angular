@@ -10,13 +10,33 @@ import { Observable } from 'rxjs';
 export class TestMasterService {
 
 
-  private apiUrl = environment.apiUrl + 'tests';
+  private api = environment.apiUrl + "tests";
 
   constructor(private http: HttpClient) { }
 
-  search(keyword: string): Observable<TestMasterModel[]> {
+  save(data: TestMasterModel): Observable<TestMasterModel> {
+    return this.http.post<TestMasterModel>(this.api, data);
+  }
+
+  update(id:number,data:TestMasterModel):Observable<TestMasterModel>{
+    return this.http.put<TestMasterModel>(`${this.api}/${id}`,data);
+  }
+
+  getAll():Observable<TestMasterModel[]>{
+    return this.http.get<TestMasterModel[]>(this.api);
+  }
+
+  getById(id:number):Observable<TestMasterModel>{
+    return this.http.get<TestMasterModel>(`${this.api}/${id}`);
+  }
+
+  delete(id:number){
+    return this.http.delete(`${this.api}/${id}`);
+  }
+
+  search(keyword:string){
     return this.http.get<TestMasterModel[]>(
-      `${this.apiUrl}/search?keyword=${keyword}`
+      `${this.api}/search?keyword=${keyword}`
     );
   }
 

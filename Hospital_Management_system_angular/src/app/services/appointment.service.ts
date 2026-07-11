@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AppointmentModel } from '../models/appointmentModel';
 import { Observable } from 'rxjs';
+import { AppointmentResponseModel } from '../models/AppointmentResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +24,11 @@ export class AppointmentService {
     return this.http.get<AppointmentModel[]>(this.apiUrl);
   }
 
-  getDoctorAppointments(doctorId: number): Observable<AppointmentModel[]> {
-    return this.http.get<AppointmentModel[]>(
-      `${this.apiUrl}/doctor/${doctorId}`
-    );
-  }
+  getDoctorAppointments(doctorId: number) {
+  return this.http.get<AppointmentResponseModel[]>(
+    `${this.apiUrl}/doctor/${doctorId}`
+  );
+}
 
   getSchedule(date: string): Observable<AppointmentModel[]> {
     return this.http.get<AppointmentModel[]>(
@@ -84,7 +85,8 @@ export class AppointmentService {
     );
   }
 
-  getById(id: number) {
+
+   getById(id: number) {
 
     return this.http.get<AppointmentModel>(
       `${this.apiUrl}/${id}`
@@ -92,9 +94,12 @@ export class AppointmentService {
 
   }
 
-
-
-
+  //   getDoctorAppointments(doctorId: number): Observable<AppointmentModel[]> {
+  //   return this.http.get<AppointmentModel[]>(
+  //     `${this.apiUrl}/doctor/${doctorId}`
+  //   );
+  // }
+  
 
 
 }

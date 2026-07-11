@@ -6,9 +6,9 @@ import { DoctorModelService } from '../../../../services/doctor.service';
 import { KEYS, StorageService } from '../../../../services/storage.service';
 import { LoginResponse } from '../../../../models/login.model';
 import { AuthService } from '../../../../services/auth.service';
-import { AppointmentModel } from '../../../../models/appointmentModel';
-import { AppointmentService } from '../../../../services/appointment.service';
 import { Router, RouterModule } from '@angular/router';
+import { AppointmentResponseModel } from '../../../../models/AppointmentResponseModel';
+import { AppointmentService } from '../../../../services/appointment.service';
 
 @Component({
   selector: 'app-doctor-dashboard-component',
@@ -19,99 +19,89 @@ import { Router, RouterModule } from '@angular/router';
 export class DoctorDashboardComponent {
 
   user: LoginResponse | null = null;
-  doctor: DoctorResponseModel | null = null;
+  doctor: DoctorResponseModel | null= null;
+  appointments: AppointmentResponseModel[] = [];
 
-  appointments: AppointmentModel[] = [];
-  today = new Date().toISOString().substring(0, 10);
-
-
-
-  loading = true;
+   loading = true;
 
   constructor(
     private doctorService: DoctorModelService,
+    private appointmentService: AppointmentService,
     private cdr: ChangeDetectorRef,
     private storage: StorageService,
     private auth: AuthService,
-    private appointmentService: AppointmentService,
-    private router: Router,
-
+      private router: Router
+   
   ) { }
 
   ngOnInit(): void {
-    this.user = this.storage.getUser();
+     this.user = this.storage.getUser();
 
     this.loadDoctor();
+    this.loadAppointments();
 
   }
 
 
-  loadDoctor(): void {
+loadDoctor(): void {
     this.loading = true;
-
+ 
     const cached = this.storage.getData<DoctorResponseModel>(KEYS.Doctor);
-    if (cached) {
+    if (cached) {     
       this.loading = false;
     }
-
+ 
     // Always refresh from server too, in case it changed elsewhere
     if (this.user?.userId) {
       this.doctorService.findByUserId(this.user.userId).subscribe({
         next: (res) => {
-          this.doctor = res;
+          this.doctor= res;
+           this.loadAppointments();
           this.storage.saveData(KEYS.Doctor, res);
           this.loading = false;
-          this.loadAppointments();
           this.cdr.markForCheck();
 
-          console.log("Doctor " + this.doctor);
+          console.log("Doctor "+ this.doctor);
         },
         error: () => { this.loading = false; }
       });
     }
   }
 
+  loadAppointments() {
 
-  logout(): void {
+  if(!this.doctor?.id){
+    return;
+  }
+
+  this.appointmentService
+      .getDoctorAppointments(this.doctor.id)
+      .subscribe({
+
+        next:(res)=>{
+
+          this.appointments=res;
+          this.cdr.markForCheck();
+
+        }
+
+      });
+
+}
+
+
+   logout(): void {
     this.auth.logout();
     this.storage.removeData(KEYS.RIDER);
   }
 
 
-  loadAppointments() {
+  writePrescription(appointmentId: number): void {
+  this.router.navigate(['/doctor/prescription', appointmentId]);
+}
 
-    if (!this.doctor?.id) return;
 
-    console.log("Doctor Id =", this.doctor.id);
 
-    this.appointmentService
-      .getDoctorAppointments(this.doctor.id)
-      .subscribe({
-
-        next: res => {
-
-          console.log("Appointments =", res);
-
-          this.appointments = res;
-
-          this.cdr.markForCheck();
-
-        },
-
-        error: err => console.log(err)
-
-      });
-
-  }
-
-  createPrescription(appointmentId: number) {
-
-    this.router.navigate([
-      '/doctor/prescription',
-      appointmentId
-    ]);
-
-  }
 
 
 

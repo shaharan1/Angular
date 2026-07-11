@@ -122,6 +122,7 @@ export class PrescriptionComponent implements OnInit {
       next: (res) => {
         this.medicines = res;
         this.cdr.markForCheck();
+        console.log("Medicines: "+this.medicines);
       }
     });
   }
@@ -173,12 +174,14 @@ export class PrescriptionComponent implements OnInit {
   searchMedicine(keyword: string) {
     if (keyword.length < 2) {
       this.filteredMedicines = [];
+      this.cdr.markForCheck();
       return;
     }
 
     this.medicineService.search(keyword).subscribe({
       next: (res) => {
         this.filteredMedicines = res;
+        this.cdr.markForCheck();
       }
     });
   }
@@ -227,6 +230,7 @@ export class PrescriptionComponent implements OnInit {
       next: (res) => {
 
         this.filteredTests = res;
+        this.cdr.markForCheck();
 
       }
 
@@ -271,11 +275,20 @@ export class PrescriptionComponent implements OnInit {
 
   }
 
+  private cleanPrescriptionItems(items: any[]): any[] {
+    return items.map(({ medicineName, ...rest }) => rest);
+  }
+
   save() {
+
+    const payload = {
+      ...this.prescription,
+      prescriptionItems: this.cleanPrescriptionItems(this.prescription.prescriptionItems)
+    };
 
     if (this.prescription.id) {
 
-      this.service.update(this.prescription.id, this.prescription).subscribe({
+      this.service.update(this.prescription.id, payload).subscribe({
 
         next: () => {
 
@@ -291,7 +304,7 @@ export class PrescriptionComponent implements OnInit {
 
     } else {
 
-      this.service.save(this.prescription).subscribe({
+      this.service.save(payload).subscribe({
 
         next: () => {
 

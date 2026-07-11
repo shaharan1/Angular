@@ -234,7 +234,81 @@
 
     </div>
 
+<div class="card mt-4 shadow">
 
+    <div class="card-header bg-success text-white">
+
+        <h5>Today's Appointments</h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>Patient</th>
+
+                    <th>Date</th>
+
+                    <th>Time</th>
+
+                    <th>Problem</th>
+
+                    <th>Status</th>
+
+                    <th></th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let appointment of appointments">
+
+                    <td>{{appointment.patientName}}</td>
+
+                    <td>{{appointment.appointmentDate}}</td>
+
+                    <td>{{appointment.appointmentTime}}</td>
+
+                    <td>{{appointment.problemDescription}}</td>
+
+                    <td>
+
+                        <span class="badge bg-success">
+
+                            {{appointment.status}}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="btn btn-primary btn-sm"
+                            (click)="writePrescription(appointment.id)">
+
+                            Write Prescription
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
     <!-- About -->
 
@@ -253,78 +327,5 @@
         </div>
 
     </div>
-
-
-
-    <!-- Today's Appointments -->
-
-    <div class="card mt-4 shadow">
-
-        <div class="card-header bg-primary text-white">
-
-            Today's Appointments
-
-        </div>
-
-        <div class="card-body">
-
-            <table class="table table-hover">
-
-                <thead>
-
-                    <tr>
-
-                        <th>No</th>
-
-                        <th>Patient</th>
-
-                        <th>Phone</th>
-
-                        <th>Time</th>
-
-                        <th>Status</th>
-
-                        <th></th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr *ngFor="let a of appointments">
-
-                        <td>{{a.appointmentNumber}}</td>
-
-                        <td>{{a.patientName}}</td>
-
-                        <td>{{a.mobileNumber}}</td>
-
-                        <td>{{a.appointmentTime}}</td>
-
-                        <td>{{a.status}}</td>
-
-                        <td>
-
-                            <button class="btn btn-success btn-sm" [routerLink]="['/prescriptions/create',a.id]">
-
-                                Create Prescription
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-
 
 </div>

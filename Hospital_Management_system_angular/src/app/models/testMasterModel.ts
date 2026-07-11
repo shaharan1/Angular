@@ -3,7 +3,7 @@
 
 export interface TestMasterModel {
 
-  id: number;
+  id?: number;
 
   testCode: string;
 
@@ -12,5 +12,7 @@ export interface TestMasterModel {
   standardPrice: number;
 
   normalRange: string;
+
+  active?: boolean;
 
 }
