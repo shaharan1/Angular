@@ -102,6 +102,8 @@ export class PrescriptionComponent implements OnInit {
       if (params['appointmentId']) {
 
         this.loadAppointment(+params['appointmentId']);
+
+        console.log(this.loadAppointment(+params['appointmentId']));
       }
 
     });
@@ -122,7 +124,7 @@ export class PrescriptionComponent implements OnInit {
       next: (res) => {
         this.medicines = res;
         this.cdr.markForCheck();
-        console.log("Medicines: "+this.medicines);
+        console.log("Medicines: " + this.medicines);
       }
     });
   }
@@ -296,6 +298,8 @@ export class PrescriptionComponent implements OnInit {
 
           this.router.navigate(['/prescription-list']);
 
+
+
         },
 
         error: err => console.log(err)
@@ -304,13 +308,13 @@ export class PrescriptionComponent implements OnInit {
 
     } else {
 
-      this.service.save(payload).subscribe({
+      this.service.save(this.prescription).subscribe({
 
-        next: () => {
+        next: (res) => {
 
-          alert('Prescription Saved Successfully');
+          console.log(res);
 
-          this.router.navigate(['/prescription-list']);
+          this.downloadPdf(res.id!);
 
         },
 
@@ -319,6 +323,62 @@ export class PrescriptionComponent implements OnInit {
       });
 
     }
+
+  }
+
+  downloadPdf(id: number) {
+
+    this.service.downloadPdf(id).subscribe({
+
+      next: (blob: Blob) => {
+
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+
+        a.href = url;
+
+        a.download = `Prescription-${id}.pdf`;
+
+        a.click();
+
+        window.URL.revokeObjectURL(url);
+
+      },
+
+      error: err => {
+
+        console.log(err);
+
+      }
+
+    });
+
+  }
+
+  printPdf(id: number) {
+
+    this.service.downloadPdf(id).subscribe({
+
+      next: (blob: Blob) => {
+
+        const fileURL = URL.createObjectURL(blob);
+
+        const win = window.open(fileURL);
+
+        if (win) {
+
+          win.onload = () => {
+
+            win.print();
+
+          };
+
+        }
+
+      }
+
+    });
 
   }
 }

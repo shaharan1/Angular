@@ -1,3 +1,5 @@
+import { PatientModel } from "./patientModel";
+
 export interface AppointmentResponseModel {
 
   id: number;
@@ -37,5 +39,7 @@ export interface AppointmentResponseModel {
   slotIsBooked: boolean;
 
   doctorSpecialization: string;
+
+  pai:PatientModel;
 
 }

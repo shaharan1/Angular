@@ -83,6 +83,8 @@ loadDoctor(): void {
           this.appointments=res;
           this.cdr.markForCheck();
 
+          console.log(this.appointments);
+
         }
 
       });

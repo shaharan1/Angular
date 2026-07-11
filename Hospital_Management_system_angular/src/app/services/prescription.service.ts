@@ -10,28 +10,44 @@ import { Observable } from 'rxjs';
 export class PrescriptionService {
 
 
-private apiUrl = environment.apiUrl + 'prescriptions';
+  private apiUrl = environment.apiUrl + 'prescriptions';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  save(data: PrescriptionModel): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  save(data: PrescriptionModel): Observable<PrescriptionModel> {
+    return this.http.post<PrescriptionModel>(this.apiUrl, data);
   }
 
   getAll(): Observable<PrescriptionModel[]> {
     return this.http.get<PrescriptionModel[]>(this.apiUrl);
   }
 
-  getById(id:number): Observable<PrescriptionModel>{
+  getById(id: number): Observable<PrescriptionModel> {
     return this.http.get<PrescriptionModel>(`${this.apiUrl}/${id}`);
   }
 
-  update(id:number,data:PrescriptionModel){
-    return this.http.put(`${this.apiUrl}/${id}`,data);
+  update(id: number, data: PrescriptionModel) {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 
-  delete(id:number){
+  delete(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  downloadPdf(id: number): Observable<Blob> {
+
+    return this.http.get(
+
+      `${environment.apiUrl}prescriptions/${id}/pdf`,
+
+      {
+
+        responseType: 'blob'
+
+      }
+
+    );
+
   }
 
 }
