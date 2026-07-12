@@ -1,38 +1,93 @@
+/* ===========================
+   Prescription Page
+=========================== */
+
+body {
+    background: #eef3f8;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-fluid {
+    max-width: 1400px;
+}
+
+/* ===========================
+   Cards
+=========================== */
+
 .card {
-    border-radius: 18px;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.12);
 }
 
 .card-header {
-    border-radius: 18px 18px 0 0;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 15px 20px;
 }
 
-.form-control {
+/* ===========================
+   Header
+=========================== */
+
+.bg-primary {
+    background: linear-gradient(135deg,#0d6efd,#3d8bfd)!important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg,#198754,#43c97a)!important;
+}
+
+.bg-info {
+    background: linear-gradient(135deg,#0dcaf0,#5fd8ff)!important;
+}
+
+.bg-warning {
+    background: linear-gradient(135deg,#ffc107,#ffd95b)!important;
+    color: #222 !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg,#dc3545,#ff6b7a)!important;
+}
+
+/* ===========================
+   Form
+=========================== */
+
+.form-control,
+.form-select {
 
     border-radius: 10px;
+    border: 1px solid #ced4da;
+    padding: 10px 12px;
+    transition: .3s;
 
 }
 
-.table {
+.form-control:focus,
+.form-select:focus {
 
-    vertical-align: middle;
-
-}
-
-.table thead th {
-
-    text-align: center;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
 
 }
 
-.table td {
+label {
 
-    vertical-align: middle;
-
-}
-
-.btn {
-
-    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #444;
 
 }
 
@@ -42,66 +97,271 @@ textarea {
 
 }
 
-h4,
-h5 {
+/* ===========================
+   Medicine Table
+=========================== */
 
+.table {
+
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.table thead {
+
+    background: #0d6efd;
+    color: white;
+
+}
+
+.table thead th {
+
+    text-align: center;
+    vertical-align: middle;
+    padding: 14px;
+
+}
+
+.table tbody td {
+
+    vertical-align: middle;
+    padding: 12px;
+
+}
+
+.table tbody tr:nth-child(even){
+
+    background:#f7fbff;
+
+}
+
+.table tbody tr:hover{
+
+    background:#e9f4ff;
+
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn {
+
+    border-radius: 10px;
     font-weight: 600;
+    transition:.25s;
 
 }
 
-body {
+.btn:hover{
 
-    background: #f5f7fb;
-
-}
-
-.search-box {
-
-    position: absolute;
-
-    width: 100%;
-
-    max-height: 220px;
-
-    overflow-y: auto;
-
-    z-index: 9999;
-
-    background: #fff;
-
-    border: 1px solid #ddd;
-
-    border-radius: 6px;
-
-    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+    transform:translateY(-2px);
 
 }
 
+.btn-primary{
 
+    background:#0d6efd;
 
-.list-group {
-    max-height: 250px;
-    overflow-y: auto;
-    border-radius: 8px;
 }
 
-.list-group-item {
-    cursor: pointer;
-    transition: 0.25s;
+.btn-danger{
+
+    background:#dc3545;
+
 }
 
-.list-group-item:hover {
-    background: #e8f5ff;
+.btn-light{
+
+    background:white;
+
 }
 
-.card {
-    border-radius: 12px;
+/* ===========================
+   Search List
+=========================== */
+
+.list-group{
+
+    border-radius:10px;
+    overflow:hidden;
+    max-height:250px;
+    overflow-y:auto;
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+
 }
 
-.table th {
-    background: #f5f5f5;
+.list-group-item{
+
+    cursor:pointer;
+    transition:.25s;
+
 }
 
-.badge {
-    font-size: 13px;
+.list-group-item:hover{
+
+    background:#dff1ff;
+
+}
+
+/* ===========================
+   Badge
+=========================== */
+
+.badge{
+
+    font-size:14px;
+    border-radius:20px;
+    padding:10px 15px;
+    font-weight:500;
+
+}
+
+/* ===========================
+   Logo
+=========================== */
+
+img{
+
+    max-width:100%;
+
+}
+
+.card-header img{
+
+    background:white;
+    border-radius:12px;
+    padding:5px;
+
+}
+
+/* ===========================
+   Section Titles
+=========================== */
+
+h2{
+
+    font-weight:700;
+
+}
+
+h5{
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   Follow-up Card
+=========================== */
+
+.border-danger{
+
+    border-left:6px solid #dc3545!important;
+
+}
+
+/* ===========================
+   Patient Card
+=========================== */
+
+.border-primary{
+
+    border-left:6px solid #0d6efd!important;
+
+}
+
+/* ===========================
+   Vital Card
+=========================== */
+
+.border-success{
+
+    border-left:6px solid #198754!important;
+
+}
+
+/* ===========================
+   Medicine Card
+=========================== */
+
+.border-info{
+
+    border-left:6px solid #0dcaf0!important;
+
+}
+
+/* ===========================
+   Test Card
+=========================== */
+
+.border-warning{
+
+    border-left:6px solid #ffc107!important;
+
+}
+
+/* ===========================
+   Save Button
+=========================== */
+
+.text-end .btn{
+
+    min-width:180px;
+    height:48px;
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:992px){
+
+    .card-header{
+
+        text-align:center;
+
+    }
+
+    h2{
+
+        font-size:24px;
+
+    }
+
+}
+
+/* ===========================
+   Print
+=========================== */
+
+@media print{
+
+    body{
+
+        background:white;
+
+    }
+
+    .btn{
+
+        display:none!important;
+
+    }
+
+    .card{
+
+        box-shadow:none!important;
+        border:1px solid #ddd;
+
+    }
+
+    .card-header{
+
+        color:white!important;
+
+    }
+
 }
