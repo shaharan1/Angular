@@ -11,9 +11,16 @@ import { MedicineService } from '../../../services/medicine.service';
 import { TestMasterService } from '../../../services/test-master.service';
 import { TestMasterModel } from '../../../models/testMasterModel';
 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @Component({
   selector: 'app-prescription',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule],
   templateUrl: './prescription.html',
   styleUrl: './prescription.css',
 })
@@ -53,50 +60,50 @@ export class PrescriptionComponent implements OnInit {
 
   };
 
-doseList: string[] = [
-  '1+0+1',
-  '1+1+1',
-  '1+0+0',
-  '0+1+0',
-  '0+0+1',
-  '1+1+0',
-  '0+1+1',
-  '½+0+½',
-  '½+½+½',
-  'SOS',
-  'STAT',
-  'OD',
-  'BD',
-  'TDS',
-  'QID',
-  'HS'
-];
+  doseList: string[] = [
+    '1+0+1',
+    '1+1+1',
+    '1+0+0',
+    '0+1+0',
+    '0+0+1',
+    '1+1+0',
+    '0+1+1',
+    '½+0+½',
+    '½+½+½',
+    'SOS',
+    'STAT',
+    'OD',
+    'BD',
+    'TDS',
+    'QID',
+    'HS'
+  ];
 
-durationList = [
+  durationList = [
 
-'1 Day',
+    '1 Day',
 
-'3 Days',
+    '3 Days',
 
-'5 Days',
+    '5 Days',
 
-'7 Days',
+    '7 Days',
 
-'10 Days',
+    '10 Days',
 
-'14 Days',
+    '14 Days',
 
-'15 Days',
+    '15 Days',
 
-'21 Days',
+    '21 Days',
 
-'1 Month',
+    '1 Month',
 
-'2 Months',
+    '2 Months',
 
-'Continue'
+    'Continue'
 
-];
+  ];
 
   instructions: string[] = [
     'Before Meal',
@@ -217,56 +224,64 @@ durationList = [
 
   }
 
-searchMedicine(item: any) {
+  searchMedicine(item: any) {
 
-  console.log("Typing:", item.medicineName);
+    console.log("Typing:", item.medicineName);
 
-  if (!item.medicineName || item.medicineName.length < 2) {
+    if (!item.medicineName || item.medicineName.length < 2) {
+      item.suggestions = [];
+      return;
+    }
 
+    this.medicineService.search(item.medicineName).subscribe({
+
+      next: (res: any) => {
+
+        console.log("Full Response =", res);
+        console.log("Is Array =", Array.isArray(res));
+        console.log("Length =", res?.length);
+
+        item.suggestions = res;
+      },
+
+      error: err => {
+        console.log(err);
+      }
+
+    });
+
+  }
+  selectMedicine(item: any, medicine: any) {
+
+    console.log("item =", item);
+    console.log("medicine =", medicine);
+    console.log("typeof medicine =", typeof medicine);
+
+    if (!medicine) {
+      alert("Medicine is undefined");
+      return;
+    }
+
+    item.medicineId = medicine.id;
+    item.medicineName = medicine.medicineName;
     item.suggestions = [];
-
-    return;
 
   }
 
-  this.medicineService.search(item.medicineName).subscribe({
-
-    next: (res) => {
-
-      console.log("API Result:", res);
-
-      item.suggestions = res;
-
-    },
-
-    error: (err) => {
-
-      console.log(err);
-
-    }
-
-  });
-
-}
- selectMedicine(item: any, medicine: MedicineModel) {
-
-    item.medicineId = medicine.id;
-
-    item.medicineName = medicine.medicineName;
-
-    item.suggestions = [];
-
-}
-
-  addMedicine(): void {
+  addMedicine() {
 
     this.prescription.prescriptionItems.push({
 
       medicineId: 0,
-       medicineName: '',
+
+      medicineName: '',
+
       dosage: '',
+
       duration: '',
+
       instruction: '',
+
       suggestions: []
 
     });

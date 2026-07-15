@@ -156,7 +156,7 @@
 
       </div>
 
-      <!-- Medicines -->
+
 
       <!-- Medicines -->
       <div class="card border-info mt-3 shadow-sm">
@@ -216,24 +216,23 @@
 
                   <!-- Medicine -->
 
-                  <td class="position-relative">
+                  <td style="position:relative; overflow:visible;">
 
-                    <input type="text" class="form-control" placeholder="Search Medicine"
-                      [(ngModel)]="item.medicineName" (keyup)="searchMedicine(item)">
+                    <input type="text" class="form-control" [(ngModel)]="item.medicineName"
+                      (input)="searchMedicine(item)" autocomplete="off">
 
-                    <ul *ngIf="item.suggestions?.length" class="list-group medicine-search">
+                    <div *ngIf="item.suggestions && item.suggestions.length > 0" class="medicine-search">
 
-                      <li *ngFor="let med of item.suggestions" class="list-group-item list-group-item-action"
-                        (click)="selectMedicine(item, med)">
+                      <div *ngFor="let med of item.suggestions" class="medicine-item"
+                        (mousedown)="selectMedicine(item,med)">
 
-                        {{ med.medicineName }}
+                        {{med.medicineName}}
 
-                      </li>
+                      </div>
 
-                    </ul>
+                    </div>
 
                   </td>
-
                   <!-- Dose -->
 
                   <td>

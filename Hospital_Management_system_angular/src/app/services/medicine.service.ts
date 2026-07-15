@@ -44,9 +44,13 @@ export class MedicineService {
     );
   }
   search(keyword: string) {
-  return this.http.get<MedicineModel[]>(
-    `${this.apiUrl}/search?keyword=${keyword}`
-  );
-}
+
+    const url = `${this.apiUrl}/search?keyword=${keyword}`;
+
+    console.log("Search URL:", url);
+
+    return this.http.get<MedicineModel[]>(url);
+
+  }
 
 }
