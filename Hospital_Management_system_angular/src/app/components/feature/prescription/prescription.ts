@@ -217,38 +217,57 @@ durationList = [
 
   }
 
-  searchMedicine(keyword: string) {
-    if (keyword.length < 2) {
-      this.filteredMedicines = [];
-      this.cdr.markForCheck();
-      return;
+searchMedicine(item: any) {
+
+  console.log("Typing:", item.medicineName);
+
+  if (!item.medicineName || item.medicineName.length < 2) {
+
+    item.suggestions = [];
+
+    return;
+
+  }
+
+  this.medicineService.search(item.medicineName).subscribe({
+
+    next: (res) => {
+
+      console.log("API Result:", res);
+
+      item.suggestions = res;
+
+    },
+
+    error: (err) => {
+
+      console.log(err);
+
     }
 
-    this.medicineService.search(keyword).subscribe({
-      next: (res) => {
-        this.filteredMedicines = res;
-        this.cdr.markForCheck();
-      }
-    });
-  }
+  });
 
-  selectMedicine(item: any, medicine: MedicineModel): void {
+}
+ selectMedicine(item: any, medicine: MedicineModel) {
 
     item.medicineId = medicine.id;
+
     item.medicineName = medicine.medicineName;
 
-    this.filteredMedicines = [];
+    item.suggestions = [];
 
-  }
+}
 
   addMedicine(): void {
 
     this.prescription.prescriptionItems.push({
 
       medicineId: 0,
+       medicineName: '',
       dosage: '',
       duration: '',
-      instruction: ''
+      instruction: '',
+      suggestions: []
 
     });
 

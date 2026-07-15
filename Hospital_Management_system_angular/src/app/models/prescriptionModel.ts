@@ -1,3 +1,5 @@
+import { MedicineModel } from "./medicineModel";
+
 export interface PrescriptionItemModel {
   id?: number;
 
@@ -8,6 +10,7 @@ export interface PrescriptionItemModel {
   dosage: string;
   duration: string;
   instruction: string;
+   suggestions?: MedicineModel[];
 }
 
 export interface PrescriptionModel {

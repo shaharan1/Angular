@@ -219,14 +219,14 @@
                   <td class="position-relative">
 
                     <input type="text" class="form-control" placeholder="Search Medicine"
-                      [(ngModel)]="item.medicineName" (keyup)="searchMedicine(item.medicineName || '')">
+                      [(ngModel)]="item.medicineName" (keyup)="searchMedicine(item)">
 
-                    <ul *ngIf="filteredMedicines.length" class="list-group medicine-search">
+                    <ul *ngIf="item.suggestions?.length" class="list-group medicine-search">
 
-                      <li class="list-group-item list-group-item-action" *ngFor="let med of filteredMedicines"
-                        (click)="selectMedicine(item,med)">
+                      <li *ngFor="let med of item.suggestions" class="list-group-item list-group-item-action"
+                        (click)="selectMedicine(item, med)">
 
-                        {{med.medicineName}}
+                        {{ med.medicineName }}
 
                       </li>
 
