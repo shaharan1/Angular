@@ -158,134 +158,167 @@
 
       <!-- Medicines -->
 
-      <div class="card border-info mt-3">
+      <!-- Medicines -->
+      <div class="card border-info mt-3 shadow-sm">
 
-        <div class="card-header bg-info text-white d-flex justify-content-between">
+        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
 
           <h5 class="mb-0">
-
             Medicines
-
           </h5>
 
           <button class="btn btn-light btn-sm" (click)="addMedicine()">
 
-            + Add Medicine
+            <i class="bi bi-plus-circle"></i>
+            Add Medicine
 
           </button>
 
         </div>
 
-        <div class="card-body">
+        <div class="card-body p-2">
 
-          <table class="table table-bordered table-hover align-middle">
+          <div class="table-responsive">
 
-            <thead class="table-primary">
+            <table class="table table-bordered align-middle medicine-table">
 
-              <tr>
+              <thead class="table-primary">
 
-                <th style="width:30%">Medicine</th>
+                <tr>
 
-                <th>Dose</th>
+                  <th style="width:34%">
+                    Medicine
+                  </th>
 
-                <th>Duration</th>
+                  <th style="width:16%">
+                    Dose
+                  </th>
 
-                <th>Instruction</th>
+                  <th style="width:16%">
+                    Duration
+                  </th>
 
-                <th></th>
+                  <th style="width:24%">
+                    Instruction
+                  </th>
 
-              </tr>
+                  <th style="width:10%">
+                    Action
+                  </th>
 
-            </thead>
+                </tr>
 
-            <tbody>
+              </thead>
 
-              <tr *ngFor="let item of prescription.prescriptionItems; let i=index">
+              <tbody>
 
-                <td>
+                <tr *ngFor="let item of prescription.prescriptionItems; let i=index">
 
-                  <input class="form-control" [(ngModel)]="item.medicineName"
-                    (keyup)="searchMedicine(item.medicineName || '')">
+                  <!-- Medicine -->
 
-                  <ul *ngIf="filteredMedicines.length" class="list-group position-absolute w-25">
+                  <td class="position-relative">
 
-                    <li class="list-group-item" *ngFor="let med of filteredMedicines"
-                      (click)="selectMedicine(item,med)">
+                    <input type="text" class="form-control" placeholder="Search Medicine"
+                      [(ngModel)]="item.medicineName" (keyup)="searchMedicine(item.medicineName || '')">
 
-                      {{med.medicineName}}
+                    <ul *ngIf="filteredMedicines.length" class="list-group medicine-search">
 
-                    </li>
+                      <li class="list-group-item list-group-item-action" *ngFor="let med of filteredMedicines"
+                        (click)="selectMedicine(item,med)">
 
-                  </ul>
+                        {{med.medicineName}}
 
-                </td>
+                      </li>
 
-                <td>
+                    </ul>
 
-                  <select class="form-select" [(ngModel)]="item.dosage" name="dosage{{i}}">
+                  </td>
 
-                    <option value="">Select Dose</option>
+                  <!-- Dose -->
 
-                    <option *ngFor="let dose of doseList" [value]="dose">
-                      {{ dose }}
-                    </option>
+                  <td>
 
-                  </select>
-
-                </td>
-
-                <td>
-
-                  <div class="col-md-2">
-                    <label class="form-label">
-                      Duration
-                    </label>
-
-                    <select class="form-select" [(ngModel)]="item.duration" name="duration{{i}}">
+                    <select class="form-select" [(ngModel)]="item.dosage" name="dose{{i}}">
 
                       <option value="">
-                        Select Duration
+
+                        Select Dose
+
                       </option>
 
-                      <option *ngFor="let duration of durationList" [value]="duration">
+                      <option *ngFor="let dose of doseList" [value]="dose">
 
-                        {{ duration }}
+                        {{dose}}
 
                       </option>
 
                     </select>
-                  </div>
-                </td>
 
-                <td>
+                  </td>
 
-                  <select class="form-select" [(ngModel)]="item.instruction">
+                  <!-- Duration -->
 
-                    <option *ngFor="let ins of instructions">
+                  <td>
 
-                      {{ins}}
+                    <select class="form-select" [(ngModel)]="item.duration" name="duration{{i}}">
 
-                    </option>
+                      <option value="">
 
-                  </select>
+                        Select Duration
 
-                </td>
+                      </option>
 
-                <td>
+                      <option *ngFor="let d of durationList" [value]="d">
 
-                  <button class="btn btn-danger btn-sm" (click)="removeMedicine(i)">
+                        {{d}}
 
-                    Remove
+                      </option>
 
-                  </button>
+                    </select>
 
-                </td>
+                  </td>
 
-              </tr>
+                  <!-- Instruction -->
 
-            </tbody>
+                  <td>
 
-          </table>
+                    <select class="form-select" [(ngModel)]="item.instruction" name="instruction{{i}}">
+
+                      <option value="">
+
+                        Select Instruction
+
+                      </option>
+
+                      <option *ngFor="let ins of instructions" [value]="ins">
+
+                        {{ins}}
+
+                      </option>
+
+                    </select>
+
+                  </td>
+
+                  <!-- Remove -->
+
+                  <td class="text-center">
+
+                    <button class="btn btn-danger btn-sm" (click)="removeMedicine(i)">
+
+                      Remove
+
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
 
         </div>
 

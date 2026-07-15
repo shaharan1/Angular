@@ -286,9 +286,117 @@ h5{
    Medicine Card
 =========================== */
 
-.border-info{
+/*=============================
+Medicine Table
+=============================*/
 
-    border-left:6px solid #0dcaf0!important;
+.medicine-table{
+
+    width:100%;
+
+    table-layout:fixed;
+
+}
+
+.medicine-table th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    font-weight:600;
+
+}
+
+.medicine-table td{
+
+    vertical-align:middle;
+
+    padding:12px;
+
+}
+
+.medicine-table .form-control,
+
+.medicine-table .form-select{
+
+    width:100%;
+
+    min-height:42px;
+
+}
+
+/*=============================
+Medicine Search
+=============================*/
+
+.position-relative{
+
+    position:relative;
+
+}
+
+.medicine-search{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    top:100%;
+
+    z-index:9999;
+
+    max-height:220px;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border:1px solid #dee2e6;
+
+    border-radius:5px;
+
+}
+
+.medicine-search li{
+
+    cursor:pointer;
+
+}
+
+.medicine-search li:hover{
+
+    background:#0d6efd;
+
+    color:white;
+
+}
+
+/*=============================
+Table Responsive
+=============================*/
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+/*=============================
+Card
+=============================*/
+
+.card{
+
+    border-radius:12px;
+
+}
+
+.card-header{
+
+    font-weight:bold;
 
 }
 
