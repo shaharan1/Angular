@@ -50,6 +50,7 @@ export class ScheduleSlotComponent implements OnInit {
     this.doctorService.getAll().subscribe(res => {
 
       this.doctors = res;
+      this.cdr.markForCheck;
 
     });
 
