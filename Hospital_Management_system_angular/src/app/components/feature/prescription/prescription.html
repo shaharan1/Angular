@@ -5,10 +5,7 @@
     <div class="card-header bg-primary text-white">
       <div class="row align-items-center">
         <div class="col-md-2 text-center">
-          <img src="assets/images/logo.png"
-               class="img-fluid"
-               style="height:80px"
-               alt="Hospital Logo">
+          <img src="assets/images/logo.png" class="img-fluid" style="height:80px" alt="Hospital Logo">
         </div>
 
         <div class="col-md-8 text-center">
@@ -61,10 +58,7 @@
 
                 </label>
 
-                <textarea
-                        class="form-control"
-                        rows="2"
-                        [(ngModel)]="prescription.diagnosis">
+                <textarea class="form-control" rows="2" [(ngModel)]="prescription.diagnosis">
 
                 </textarea>
 
@@ -78,10 +72,7 @@
 
                 </label>
 
-                <textarea
-                        class="form-control"
-                        rows="2"
-                        [(ngModel)]="prescription.chiefComplaints">
+                <textarea class="form-control" rows="2" [(ngModel)]="prescription.chiefComplaints">
 
                 </textarea>
 
@@ -95,10 +86,7 @@
 
                 </label>
 
-                <textarea
-                        class="form-control"
-                        rows="2"
-                        [(ngModel)]="prescription.symptoms">
+                <textarea class="form-control" rows="2" [(ngModel)]="prescription.symptoms">
 
                 </textarea>
 
@@ -130,9 +118,7 @@
 
                   <label>Blood Pressure</label>
 
-                  <input
-                          class="form-control"
-                          [(ngModel)]="prescription.bloodPressure">
+                  <input class="form-control" [(ngModel)]="prescription.bloodPressure">
 
                 </div>
 
@@ -140,9 +126,7 @@
 
                   <label>Pulse</label>
 
-                  <input
-                          class="form-control"
-                          [(ngModel)]="prescription.pulseRate">
+                  <input class="form-control" [(ngModel)]="prescription.pulseRate">
 
                 </div>
 
@@ -150,9 +134,7 @@
 
                   <label>Temperature</label>
 
-                  <input
-                          class="form-control"
-                          [(ngModel)]="prescription.bodyTemperature">
+                  <input class="form-control" [(ngModel)]="prescription.bodyTemperature">
 
                 </div>
 
@@ -160,9 +142,7 @@
 
                   <label>Weight</label>
 
-                  <input
-                          class="form-control"
-                          [(ngModel)]="prescription.weight">
+                  <input class="form-control" [(ngModel)]="prescription.weight">
 
                 </div>
 
@@ -188,9 +168,7 @@
 
           </h5>
 
-          <button
-                  class="btn btn-light btn-sm"
-                  (click)="addMedicine()">
+          <button class="btn btn-light btn-sm" (click)="addMedicine()">
 
             + Add Medicine
 
@@ -204,96 +182,106 @@
 
             <thead class="table-primary">
 
-            <tr>
+              <tr>
 
-              <th style="width:30%">Medicine</th>
+                <th style="width:30%">Medicine</th>
 
-              <th>Dose</th>
+                <th>Dose</th>
 
-              <th>Duration</th>
+                <th>Duration</th>
 
-              <th>Instruction</th>
+                <th>Instruction</th>
 
-              <th></th>
+                <th></th>
 
-            </tr>
+              </tr>
 
             </thead>
 
             <tbody>
 
-            <tr *ngFor="let item of prescription.prescriptionItems; let i=index">
+              <tr *ngFor="let item of prescription.prescriptionItems; let i=index">
 
-              <td>
+                <td>
 
-                <input
-                        class="form-control"
-                        [(ngModel)]="item.medicineName"
-                        (keyup)="searchMedicine(item.medicineName || '')">
+                  <input class="form-control" [(ngModel)]="item.medicineName"
+                    (keyup)="searchMedicine(item.medicineName || '')">
 
-                <ul
-                        *ngIf="filteredMedicines.length"
-                        class="list-group position-absolute w-25">
+                  <ul *ngIf="filteredMedicines.length" class="list-group position-absolute w-25">
 
-                  <li
-                          class="list-group-item"
-                          *ngFor="let med of filteredMedicines"
-                          (click)="selectMedicine(item,med)">
+                    <li class="list-group-item" *ngFor="let med of filteredMedicines"
+                      (click)="selectMedicine(item,med)">
 
-                    {{med.medicineName}}
+                      {{med.medicineName}}
 
-                  </li>
+                    </li>
 
-                </ul>
+                  </ul>
 
-              </td>
+                </td>
 
-              <td>
+                <td>
 
-                <input
-                        class="form-control"
-                        [(ngModel)]="item.dosage">
+                  <select class="form-select" [(ngModel)]="item.dosage" name="dosage{{i}}">
 
-              </td>
+                    <option value="">Select Dose</option>
 
-              <td>
+                    <option *ngFor="let dose of doseList" [value]="dose">
+                      {{ dose }}
+                    </option>
 
-                <input
-                        class="form-control"
-                        [(ngModel)]="item.duration">
+                  </select>
 
-              </td>
+                </td>
 
-              <td>
+                <td>
 
-                <select
-                        class="form-select"
-                        [(ngModel)]="item.instruction">
+                  <div class="col-md-2">
+                    <label class="form-label">
+                      Duration
+                    </label>
 
-                  <option
-                          *ngFor="let ins of instructions">
+                    <select class="form-select" [(ngModel)]="item.duration" name="duration{{i}}">
 
-                    {{ins}}
+                      <option value="">
+                        Select Duration
+                      </option>
 
-                  </option>
+                      <option *ngFor="let duration of durationList" [value]="duration">
 
-                </select>
+                        {{ duration }}
 
-              </td>
+                      </option>
 
-              <td>
+                    </select>
+                  </div>
+                </td>
 
-                <button
-                        class="btn btn-danger btn-sm"
-                        (click)="removeMedicine(i)">
+                <td>
 
-                  Remove
+                  <select class="form-select" [(ngModel)]="item.instruction">
 
-                </button>
+                    <option *ngFor="let ins of instructions">
 
-              </td>
+                      {{ins}}
 
-            </tr>
+                    </option>
+
+                  </select>
+
+                </td>
+
+                <td>
+
+                  <button class="btn btn-danger btn-sm" (click)="removeMedicine(i)">
+
+                    Remove
+
+                  </button>
+
+                </td>
+
+              </tr>
 
             </tbody>
 
@@ -319,20 +307,12 @@
 
         <div class="card-body">
 
-          <input
-                  class="form-control mb-3"
-                  placeholder="Search Test..."
-                  [(ngModel)]="testKeyword"
-                  (keyup)="searchTest(testKeyword)">
+          <input class="form-control mb-3" placeholder="Search Test..." [(ngModel)]="testKeyword"
+            (keyup)="searchTest(testKeyword)">
 
-          <ul
-                  *ngIf="filteredTests.length"
-                  class="list-group mb-3">
+          <ul *ngIf="filteredTests.length" class="list-group mb-3">
 
-            <li
-                    *ngFor="let t of filteredTests"
-                    class="list-group-item"
-                    (click)="selectTest(t)">
+            <li *ngFor="let t of filteredTests" class="list-group-item" (click)="selectTest(t)">
 
               {{t.testCode}}
 
@@ -346,22 +326,17 @@
 
           <div>
 
-                <span
-                        class="badge bg-primary me-2 mb-2"
-                        *ngFor="let t of selectedTests">
+            <span class="badge bg-primary me-2 mb-2" *ngFor="let t of selectedTests">
 
-                    {{t.testName}}
+              {{t.testName}}
 
-                  <span
-                          class="ms-2"
-                          style="cursor:pointer"
-                          (click)="removeTest(t)">
+              <span class="ms-2" style="cursor:pointer" (click)="removeTest(t)">
 
-                        ×
+                ×
 
-                    </span>
+              </span>
 
-                </span>
+            </span>
 
           </div>
 
@@ -381,10 +356,7 @@
 
         <div class="card-body">
 
-          <input
-                  type="date"
-                  class="form-control"
-                  [(ngModel)]="prescription.nextFollowUpDate">
+          <input type="date" class="form-control" [(ngModel)]="prescription.nextFollowUpDate">
 
         </div>
 
@@ -402,10 +374,7 @@
 
         <div class="card-body">
 
-          <textarea
-                  class="form-control"
-                  rows="5"
-                  [(ngModel)]="prescription.notes">
+          <textarea class="form-control" rows="5" [(ngModel)]="prescription.notes">
 
           </textarea>
 
@@ -417,9 +386,7 @@
 
       <div class="text-end mt-4">
 
-        <button
-                class="btn btn-primary me-2"
-                (click)="save()">
+        <button class="btn btn-primary me-2" (click)="save()">
 
           Save Prescription
 

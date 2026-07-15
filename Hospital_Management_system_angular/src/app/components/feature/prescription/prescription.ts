@@ -53,6 +53,50 @@ export class PrescriptionComponent implements OnInit {
 
   };
 
+doseList: string[] = [
+  '1+0+1',
+  '1+1+1',
+  '1+0+0',
+  '0+1+0',
+  '0+0+1',
+  '1+1+0',
+  '0+1+1',
+  '½+0+½',
+  '½+½+½',
+  'SOS',
+  'STAT',
+  'OD',
+  'BD',
+  'TDS',
+  'QID',
+  'HS'
+];
+
+durationList = [
+
+'1 Day',
+
+'3 Days',
+
+'5 Days',
+
+'7 Days',
+
+'10 Days',
+
+'14 Days',
+
+'15 Days',
+
+'21 Days',
+
+'1 Month',
+
+'2 Months',
+
+'Continue'
+
+];
 
   instructions: string[] = [
     'Before Meal',
