@@ -112,10 +112,7 @@ textarea {
 }
 
 .table-responsive {
-
-    overflow-x: auto;
-    overflow-y: visible;
-
+    overflow: visible;
 }
 
 /* ===================================
@@ -148,11 +145,13 @@ mat-form-field {
 
 .medicine-search {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 2px);
     left: 0;
     width: 100%;
     background: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);
     z-index: 99999;
     max-height: 220px;
     overflow-y: auto;
@@ -250,6 +249,22 @@ mat-form-field {
 
 }
 
+.card-body {
+    overflow: visible;
+}
+
+
+.medicine-item {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+
+.medicine-item:hover {
+    background: #0d6efd;
+    color: #fff;
+}
+
 /* ===================================
    Responsive
 =================================== */
@@ -259,6 +274,7 @@ mat-form-field {
     .card-header {
 
         text-align: center;
+          overflow: visible;
 
     }
 

@@ -242,6 +242,7 @@ export class PrescriptionComponent implements OnInit {
         console.log("Length =", res?.length);
 
         item.suggestions = res;
+        this.cdr.detectChanges();
       },
 
       error: err => {
@@ -251,6 +252,8 @@ export class PrescriptionComponent implements OnInit {
     });
 
   }
+
+
   selectMedicine(item: any, medicine: any) {
 
     console.log("item =", item);
@@ -261,6 +264,8 @@ export class PrescriptionComponent implements OnInit {
       alert("Medicine is undefined");
       return;
     }
+
+console.log("Selected Medicine:", medicine);
 
     item.medicineId = medicine.id;
     item.medicineName = medicine.medicineName;
@@ -361,12 +366,21 @@ export class PrescriptionComponent implements OnInit {
 
   save() {
 
+    console.log("AppointmentId:", this.prescription.appointmentId);
+console.log("DoctorId:", this.prescription.doctorId);
+console.log("PatientId:", this.prescription.patientId);
+console.log("Prescription Items:", this.prescription.prescriptionItems);
+
     const payload = {
       ...this.prescription,
       prescriptionItems: this.cleanPrescriptionItems(this.prescription.prescriptionItems)
     };
 
     if (this.prescription.id) {
+
+      console.log(
+        JSON.stringify(this.prescription, null, 2)
+      );
 
       this.service.update(this.prescription.id, payload).subscribe({
 
