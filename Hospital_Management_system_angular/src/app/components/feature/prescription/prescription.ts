@@ -180,27 +180,28 @@ export class PrescriptionComponent implements OnInit {
     });
   }
 
+loadAppointment(appointmentId: number) {
 
-  loadAppointment(appointmentId: number) {
+  this.appointmentService.getById(appointmentId).subscribe({
 
-    this.appointmentService
-      .getById(appointmentId)
-      .subscribe({
+    next: (res) => {
 
-        next: (res) => {
+      console.log("Appointment Response =", res);
 
-          this.prescription.appointmentId = res.id!;
-          this.prescription.patientId = res.registeredPatientId!;
-          this.prescription.doctorId = res.doctorId!;
-          this.cdr.markForCheck();
+      this.prescription.appointmentId = res.id!;
+      this.prescription.patientId = res.registeredPatientId!;
+      this.prescription.doctorId = res.doctorId!;
 
-          console.log(res);
+      console.log("registeredPatientId =", res.registeredPatientId);
+      console.log("patientId =", this.prescription.patientId);
 
-        }
+    },
 
-      });
+    error: err => console.log(err)
 
-  }
+  });
+
+}
 
 
   loadPrescription(id: number) {
@@ -364,59 +365,125 @@ console.log("Selected Medicine:", medicine);
     return items.map(({ medicineName, ...rest }) => rest);
   }
 
-  save() {
-
-    console.log("AppointmentId:", this.prescription.appointmentId);
-console.log("DoctorId:", this.prescription.doctorId);
-console.log("PatientId:", this.prescription.patientId);
-console.log("Prescription Items:", this.prescription.prescriptionItems);
-
-    const payload = {
-      ...this.prescription,
-      prescriptionItems: this.cleanPrescriptionItems(this.prescription.prescriptionItems)
-    };
-
-    if (this.prescription.id) {
-
-      console.log(
-        JSON.stringify(this.prescription, null, 2)
-      );
-
-      this.service.update(this.prescription.id, payload).subscribe({
-
-        next: () => {
-
-          alert('Prescription Updated Successfully');
-
-          this.router.navigate(['/prescription-list']);
 
 
+//   save() {
 
-        },
+//     console.log("AppointmentId:", this.prescription.appointmentId);
+// console.log("DoctorId:", this.prescription.doctorId);
+// console.log("PatientId:", this.prescription.patientId);
+// console.log("Prescription Items:", this.prescription.prescriptionItems);
 
-        error: err => console.log(err)
+//     const payload = {
+//       ...this.prescription,
+//       prescriptionItems: this.cleanPrescriptionItems(this.prescription.prescriptionItems)
+//     };
 
-      });
+//     if (this.prescription.id) {
 
-    } else {
+//       console.log(
+//         JSON.stringify(this.prescription, null, 2)
+//       );
 
-      this.service.save(this.prescription).subscribe({
+//       this.service.update(this.prescription.id, payload).subscribe({
 
-        next: (res) => {
+//         next: () => {
 
-          console.log(res);
+//           alert('Prescription Updated Successfully');
 
-          this.downloadPdf(res.id!);
+//           this.router.navigate(['/prescription-list']);
 
-        },
 
-        error: err => console.log(err)
 
-      });
+//         },
 
-    }
+//         error: err => console.log(err)
+
+//       });
+
+//     } else {
+
+//       this.service.save(this.prescription).subscribe({
+
+//         next: (res) => {
+
+//           console.log(res);
+
+//           this.downloadPdf(res.id!);
+
+//         },
+
+//         error: err => console.log(err)
+
+//       });
+
+//     }
+
+//   }
+
+
+save() {
+
+  const payload = {
+    ...this.prescription,
+    prescriptionItems: this.cleanPrescriptionItems(
+      this.prescription.prescriptionItems
+    )
+  };
+
+  console.log("========== Prescription Payload ==========");
+  console.log("Payload =", payload);
+  console.log("Payload JSON =", JSON.stringify(payload, null, 2));
+  console.log("AppointmentId =", payload.appointmentId);
+  console.log("DoctorId =", payload.doctorId);
+  console.log("PatientId =", payload.patientId);
+  console.log("PrescriptionItems =", payload.prescriptionItems);
+  console.log("TestIds =", payload.testIds);
+
+  if (this.prescription.id) {
+
+    this.service.update(this.prescription.id, payload).subscribe({
+
+      next: () => {
+
+        alert('Prescription Updated Successfully');
+
+        this.router.navigate(['/prescription-list']);
+
+      },
+
+      error: err => {
+
+        console.log(err);
+
+      }
+
+    });
+
+  } else {
+
+    this.service.save(payload).subscribe({
+
+      next: (res) => {
+
+        console.log("Save Success =", res);
+
+        this.downloadPdf(res.id!);
+
+      },
+
+      error: (err) => {
+
+        console.log("Save Error =", err);
+
+      }
+
+    });
 
   }
+
+}
+
 
   downloadPdf(id: number) {
 

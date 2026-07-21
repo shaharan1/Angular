@@ -161,7 +161,7 @@ loadDoctorsByDepartment(depId: number) {
 
   this.appointmentForm = this.fb.group({
 
-    patientId: [null],
+    patientId: [],
 
     patientName: ['', Validators.required],
 
