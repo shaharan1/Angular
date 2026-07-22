@@ -3,6 +3,9 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { WardModel } from '../models/ward.model';
 import { BedModel } from '../models/bed.model';
+import { AdmissionRequest } from '../models/admission.model';
+import { AdmissionResponse } from '../models/admission-response.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +13,41 @@ import { BedModel } from '../models/bed.model';
 export class AdmissionService {
 
 
-  api = environment.apiUrl + "infrastructure";
+  // api = environment.apiUrl + "infrastructure";
+
+  // constructor(private http: HttpClient) { }
+
+  // getAllWards() {
+  //   return this.http.get<WardModel[]>(this.api + "/wards");
+  // }
+
+  // getBedsByWard(id: number) {
+  //   return this.http.get<BedModel[]>(`${this.api}/wards/${id}/beds`);
+  // }
+
+
+
+
+  private api = environment.apiUrl + "admissions";
 
   constructor(private http: HttpClient) { }
 
-  getAllWards() {
-    return this.http.get<WardModel[]>(this.api + "/wards");
+  admit(data: AdmissionRequest): Observable<AdmissionResponse> {
+
+    return this.http.post<AdmissionResponse>(
+      `${this.api}/admit`,
+      data
+    );
+
   }
 
-  getBedsByWard(id: number) {
-    return this.http.get<BedModel[]>(`${this.api}/wards/${id}/beds`);
+  discharge(id: number): Observable<AdmissionResponse> {
+
+    return this.http.put<AdmissionResponse>(
+      `${this.api}/discharge/${id}`,
+      {}
+    );
+
   }
 
 }
