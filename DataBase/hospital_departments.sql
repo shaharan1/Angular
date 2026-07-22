@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospital
+-- Host: 127.0.0.1    Database: hospital
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -30,7 +30,7 @@ CREATE TABLE `departments` (
   `description` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKj6cwks7xecs5jov19ro8ge3qk` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `departments` (
 
 LOCK TABLES `departments` WRITE;
 /*!40000 ALTER TABLE `departments` DISABLE KEYS */;
+INSERT INTO `departments` VALUES (_binary '',1,'Medicine','MED','General Medicine Department'),(_binary '',2,'Surgery','SUR','General Surgery Department'),(_binary '',3,'Cardiology','CAR','Cardiology Department'),(_binary '',4,'Critical Care','CC','Critical Care Department'),(_binary '',5,'Pediatrics','PED','Pediatrics Department'),(_binary '',6,'Emergency','EMR','Emergency Department');
 /*!40000 ALTER TABLE `departments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-12 19:17:53
+-- Dump completed on 2026-07-23  2:02:45

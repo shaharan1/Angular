@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospital
+-- Host: 127.0.0.1    Database: hospital
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -35,7 +35,7 @@ CREATE TABLE `admitted_patients` (
   KEY `FKqs4j0lwk8608t8prdc9nch9cf` (`doctor_id`),
   CONSTRAINT `FKddg9cb8ns2mogcru2ul8n9v9x` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`),
   CONSTRAINT `FKqs4j0lwk8608t8prdc9nch9cf` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +44,7 @@ CREATE TABLE `admitted_patients` (
 
 LOCK TABLES `admitted_patients` WRITE;
 /*!40000 ALTER TABLE `admitted_patients` DISABLE KEYS */;
+INSERT INTO `admitted_patients` VALUES ('2026-07-23 01:49:31.472039','2026-07-23 01:59:50.186812',1,1,1,'DISCHARGED','Jor'),('2026-07-23 02:00:43.707368',NULL,1,2,1,'ADMITTED','Jor');
 /*!40000 ALTER TABLE `admitted_patients` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-12 19:17:55
+-- Dump completed on 2026-07-23  2:02:45

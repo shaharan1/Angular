@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospital
+-- Host: 127.0.0.1    Database: hospital
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -31,7 +31,7 @@ CREATE TABLE `beds` (
   UNIQUE KEY `UKj7pgi2mbpbya6m8eu3ysfcut9` (`bed_number`),
   KEY `FKccoswfceny9biqfp1jkcpcrqy` (`ward_id`),
   CONSTRAINT `FKccoswfceny9biqfp1jkcpcrqy` FOREIGN KEY (`ward_id`) REFERENCES `wards` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `beds` (
 
 LOCK TABLES `beds` WRITE;
 /*!40000 ALTER TABLE `beds` DISABLE KEYS */;
+INSERT INTO `beds` VALUES (1,1,'GW-A-01','AVAILABLE'),(2,1,'GW-A-02','AVAILABLE'),(3,1,'GW-A-03','AVAILABLE'),(4,1,'GW-A-04','AVAILABLE'),(5,2,'GW-B-01','AVAILABLE'),(6,2,'GW-B-02','AVAILABLE'),(7,2,'GW-B-03','AVAILABLE'),(8,3,'SP-01','AVAILABLE'),(9,3,'SP-02','AVAILABLE'),(10,3,'SP-03','AVAILABLE'),(11,4,'PC-01','OCCUPIED'),(12,4,'PC-02','AVAILABLE'),(13,5,'ICU-01','AVAILABLE'),(14,5,'ICU-02','AVAILABLE'),(15,5,'ICU-03','AVAILABLE'),(16,6,'CCU-01','AVAILABLE'),(17,6,'CCU-02','AVAILABLE'),(18,7,'NICU-01','AVAILABLE'),(19,7,'NICU-02','AVAILABLE'),(20,8,'ER-01','AVAILABLE'),(21,8,'ER-02','AVAILABLE'),(22,8,'ER-03','AVAILABLE');
 /*!40000 ALTER TABLE `beds` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-12 19:17:54
+-- Dump completed on 2026-07-23  2:02:45

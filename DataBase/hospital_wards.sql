@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospital
+-- Host: 127.0.0.1    Database: hospital
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -33,7 +33,7 @@ CREATE TABLE `wards` (
   UNIQUE KEY `UKp4qpc4vqg3wmcws774tb1v0qo` (`name`),
   KEY `FKtne8t1tbs247l9kar3w9ajhon` (`department_id`),
   CONSTRAINT `FKtne8t1tbs247l9kar3w9ajhon` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `wards` (
 
 LOCK TABLES `wards` WRITE;
 /*!40000 ALTER TABLE `wards` DISABLE KEYS */;
+INSERT INTO `wards` VALUES (1000,20,1,1,'General Ward A','GENERAL_WARD'),(1200,15,2,2,'General Ward B','GENERAL_WARD'),(1800,10,1,3,'Semi Private Ward','SEMI_PRIVATE'),(3000,8,3,4,'Private Cabin','PRIVATE_CABIN'),(7000,6,3,5,'ICU Ward','ICU'),(8000,5,3,6,'CCU Ward','CCU'),(9000,6,5,7,'NICU Ward','NICU'),(2500,12,2,8,'Emergency Ward','EMERGENCY');
 /*!40000 ALTER TABLE `wards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-12 19:17:54
+-- Dump completed on 2026-07-23  2:02:44
