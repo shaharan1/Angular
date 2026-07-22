@@ -50,4 +50,17 @@ export class AdmissionService {
 
   }
 
+
+  getAll(): Observable<AdmissionResponse[]> {
+
+    return this.http.get<AdmissionResponse[]>(this.api);
+
+  }
+
+  getById(id: number): Observable<AdmissionResponse> {
+
+    return this.http.get<AdmissionResponse>(`${this.api}/${id}`);
+
+  }
+
 }

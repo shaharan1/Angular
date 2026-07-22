@@ -24,6 +24,8 @@ import { authGuard } from './guard/auth-guard-guard';
 import { DoctorDashboardComponent } from './components/feature/doctors/doctor-dashboard-component/doctor-dashboard-component';
 import { TestMasterComponent } from './components/feature/test-master.component/test-master.component';
 import { TestListComponent } from './components/feature/test-list.component/test-list.component';
+import { AdmissionComponent } from './components/feature/admission/admission-component/admission-component';
+import { AdmissionListComponent } from './components/feature/admission/admission-list.component/admission-list.component';
 
 export const routes: Routes = [
 
@@ -180,17 +182,27 @@ export const routes: Routes = [
   // ------TESTS-------
 
   {
-  path:'tests/create',
-  component:TestMasterComponent
-},
-{
-  path:'tests/edit/:id',
-  component:TestMasterComponent
-},
-{
-  path:'test-list',
-  component:TestListComponent
-}
+    path: 'tests/create',
+    component: TestMasterComponent
+  },
+  {
+    path: 'tests/edit/:id',
+    component: TestMasterComponent
+  },
+  {
+    path: 'test-list',
+    component: TestListComponent
+  },
+
+  // ==========Admission Patient=======
+  {
+    path: 'admission',
+    component: AdmissionComponent
+  },
+  {
+    path: 'admission-list',
+    component: AdmissionListComponent
+  },
 
 
 
