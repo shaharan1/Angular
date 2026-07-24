@@ -27,6 +27,8 @@ import { TestListComponent } from './components/feature/test-list.component/test
 import { AdmissionComponent } from './components/feature/admission/admission-component/admission-component';
 import { AdmissionListComponent } from './components/feature/admission/admission-list.component/admission-list.component';
 import { WardManagementComponent } from './components/feature/ward/ward-management.component/ward-management.component';
+import { WardComponent } from './components/feature/ward/ward.component/ward.component';
+import { WardListComponent } from './components/feature/ward/ward-list.component/ward-list.component';
 
 export const routes: Routes = [
 
@@ -209,6 +211,22 @@ export const routes: Routes = [
   {
     path: 'ward-management',
     component: WardManagementComponent
+  },
+  {
+    path: 'ward',
+    component: WardComponent
+  },
+  {
+    path: 'ward-list',
+    component: WardListComponent
+  },
+  {
+    path: 'bed-management',
+    component: BedManagementComponent
+  },
+  {
+    path: 'admission-list',
+    component: AdmissionListComponent
   }
 
 
