@@ -1,12 +1,14 @@
+
+
 export interface WardModel {
 
-    id: number;
+    id?: number;
 
     name: string;
 
     departmentId: number;
 
-    departmentName: string;
+    departmentName?: string;
 
     roomType: string;
 
