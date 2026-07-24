@@ -3,10 +3,11 @@ import { WardModel } from '../../../../models/ward.model';
 import { InfrastructureService } from '../../../../services/infrastructure.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-ward-list.component',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './ward-list.component.html',
   styleUrl: './ward-list.component.css',
 })
